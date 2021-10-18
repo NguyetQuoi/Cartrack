@@ -1,0 +1,43 @@
+<resources>
+	<dimen name="margin_smaller">@dimen/_8sdp</dimen>
+	<dimen name="margin_small">@dimen/_12sdp</dimen>
+	<dimen name="margin_normal">@dimen/_19sdp</dimen>
+	<dimen name="margin_large">@dimen/_24sdp</dimen>
+	<dimen name="margin_big">@dimen/_32sdp</dimen>
+	<dimen name="margin_bigger">@dimen/_48sdp</dimen>
+	<dimen name="spacing_normal">@dimen/_8sdp</dimen>
+	<dimen name="spacing_micro">@dimen/_4sdp</dimen>
+
+	<dimen name="no_corner">0dp</dimen>
+	<dimen name="corner_radius">@dimen/_10sdp</dimen>
+	<dimen name="small_corner_radius">@dimen/_8sdp</dimen>
+	<dimen name="smaller_corner_radius">@dimen/_3sdp</dimen>
+	<dimen name="elevation">@dimen/_8sdp</dimen>
+	<dimen name="bottom_sheet_height">@dimen/_540sdp</dimen>
+	<dimen name="dialog_button_width">@dimen/_65sdp</dimen>
+	<dimen name="floating_hint_margin">@dimen/_4sdp</dimen>
+	<dimen name="tnc_button_width">@dimen/_80sdp</dimen>
+
+	<dimen name="button_height">@dimen/_46sdp</dimen>
+	<dimen name="input_text_height">@dimen/_46sdp</dimen>
+	<dimen name="input_search_text_height">@dimen/_40sdp</dimen>
+	<dimen name="fab_margin">16dp</dimen>
+
+	<dimen name="search_result_height">@dimen/_260sdp</dimen>
+	<dimen name="empty_search_height">@dimen/_130sdp</dimen>
+
+	<dimen name="progress_bar_height">42dp</dimen>
+	<dimen name="detail_map_height">@dimen/_128sdp</dimen>
+	<dimen name="detail_description_height">@dimen/_42sdp</dimen>
+
+	<dimen name="observation_icon_width">@dimen/_30sdp</dimen>
+	<dimen name="observation_item_width">@dimen/_82sdp</dimen>
+	<dimen name="selection_item_width">@dimen/_200sdp</dimen>
+	<dimen name="category_item_width">@dimen/_32sdp</dimen>
+	<dimen name="categories_expand_width">@dimen/_147sdp</dimen>
+	<dimen name="categories_expand_height">@dimen/_225sdp</dimen>
+	<dimen name="categories_collapse_width">@dimen/_14sdp</dimen>
+	<dimen name="categories_collapse_height">@dimen/_126sdp</dimen>
+
+	<dimen name="location_marker_width">@dimen/_28sdp</dimen>
+</resources>
