@@ -1,9 +1,12 @@
 package com.example.cartrack.global
 
 import android.app.Activity
+import android.app.Instrumentation
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.DialogFragment
 import com.example.cartrack.base.BaseActivity
@@ -34,6 +37,7 @@ abstract class NavigationItem {
         private val requestCode: Int,
         private val clearTask: Boolean,
         private val finish: Boolean,
+        private val onActivityResult: NavigationInterface.onActivityResult? = null,
         private val transactionAnimation: TransactionAnimation? =
             TransactionAnimation.NONE
     ) : NavigationItem() {
@@ -43,15 +47,38 @@ abstract class NavigationItem {
             clearTask: Boolean = false,
             requestCode: Int = -1,
             finish: Boolean = false,
+            onActivityResult: NavigationInterface.onActivityResult? = null,
             transactionAnimation: TransactionAnimation?
         )
-                : this(clazz, null, data, requestCode, clearTask, finish, transactionAnimation)
+                : this(
+            clazz,
+            null,
+            data,
+            requestCode,
+            clearTask,
+            finish,
+            onActivityResult,
+            transactionAnimation
+        )
 
         constructor(
-            intent: Intent, data: Bundle? = null, requestCode: Int = -1,
-            finish: Boolean = false, transactionAnimation: TransactionAnimation?
+            intent: Intent,
+            data: Bundle? = null,
+            requestCode: Int = -1,
+            finish: Boolean = false,
+            onActivityResult: NavigationInterface.onActivityResult? = null,
+            transactionAnimation: TransactionAnimation?
         )
-                : this(null, intent, data, requestCode, false, finish, transactionAnimation)
+                : this(
+            null,
+            intent,
+            data,
+            requestCode,
+            false,
+            finish,
+            onActivityResult,
+            transactionAnimation
+        )
 
         override fun navigate(activity: BaseActivity<*, *>) {
             val launcherIntent = intent ?: if (clazz != null) Intent(activity, clazz) else null
@@ -61,10 +88,14 @@ abstract class NavigationItem {
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 }
                 if (requestCode >= 0) {
-                    activity.startActivityForResult(intent, requestCode)
+                    activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                        onActivityResult?.onActivityResult(result)
+                    }.launch(intent)
+
                 } else {
                     activity.startActivity(intent)
                 }
+
                 transactionAnimation?.let {
                     activity.overridePendingTransition(it.enter, it.exit)
                 }

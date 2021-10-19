@@ -1,6 +1,5 @@
 package com.example.cartrack.base
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.annotation.IdRes
@@ -19,7 +18,7 @@ import com.example.cartrack.widget.dialog.LoadingDialog
 import io.reactivex.disposables.CompositeDisposable
 
 /**
- * A base activity for CP
+ * A base activity
  * @author n.quoi
  * @date 10.17.2021
  * @param VM view-model
@@ -47,20 +46,6 @@ abstract class BaseActivity<VM : BindingViewModel, VDB : ViewDataBinding> : AppC
 
     @IdRes
     protected open val fragmentContainer: Int = 0
-
-//    protected var idlingResource: FetchingIdlingResource? = null
-//        set(value) {
-//            viewModel?.fetcherListener = value
-//            field = value
-//        }
-
-//    /**
-//     * Only called from test, creates and returns a new [FetchingIdlingResource].
-//     */
-//    @VisibleForTesting
-//    fun getIdlingResource(): IdlingResource {
-//        return idlingResource ?: FetchingIdlingResource().also { idlingResource = it }
-//    }
 
     protected open fun configWindow() {}
 
@@ -173,12 +158,6 @@ abstract class BaseActivity<VM : BindingViewModel, VDB : ViewDataBinding> : AppC
             if (!loadingDialog.isAdded) loadingDialog.show(supportFragmentManager, "loading")
         } else {
             if (loadingDialog.isAdded) loadingDialog.dismiss()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (!viewModel.onActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

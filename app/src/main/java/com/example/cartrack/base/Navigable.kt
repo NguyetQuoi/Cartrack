@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StringRes
+import com.example.cartrack.global.NavigationInterface
 import com.example.cartrack.global.TransactionAnimation
 
 /**
@@ -45,7 +46,12 @@ interface Navigable {
      * @param animation [TransactionAnimation]
      */
     fun startActivityForResult(
-        clazz: Class<*>, requestCode: Int, data: Bundle? = null,
+        clazz: Class<*>,
+        requestCode: Int,
+        data: Bundle? = null,
+        clearTask: Boolean,
+        finish: Boolean = false,
+        onActivityResult: NavigationInterface.onActivityResult? = null,
         animation: TransactionAnimation? = TransactionAnimation.NONE
     )
 
@@ -57,7 +63,10 @@ interface Navigable {
      * @param animation [TransactionAnimation]
      */
     fun startActivityForResult(
-        intent: Intent, requestCode: Int, data: Bundle? = null,
+        intent: Intent,
+        requestCode: Int,
+        data: Bundle? = null,
+        onActivityResult: NavigationInterface.onActivityResult? = null,
         animation: TransactionAnimation? = TransactionAnimation.NONE
     )
 

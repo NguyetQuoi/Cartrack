@@ -1,0 +1,26 @@
+android {
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            dimension "environment"
+            resValue "string", "app_name", "Dev Cartrack"
+
+            buildConfigField "String",  "API_ENDPOINT",        "\"https://api-test.crowdpop.com/\""
+            buildConfigField "String",  "API_KEY",        "\"dV2So3TbHA3hKCcYnnLM8ayJaCeT1rjj9qKiUwsY\""
+        }
+        staging {
+            dimension "environment"
+            resValue "string", "app_name", "Staging Cartrack"
+
+            buildConfigField "String",  "API_ENDPOINT",        "\"https://api-qa.Cartrack.com/\""
+            buildConfigField "String",  "API_KEY",        "\"dV2So3TbHA3hKCcYnnLM8ayJaCeT1rjj9qKiUwsY\""
+        }
+        production {
+            dimension "environment"
+            resValue "string", "app_name", "Cartrack"
+
+            buildConfigField "String",  "API_ENDPOINT",        "\"https://api-prod.Cartrack.com/\""
+            buildConfigField "String",  "API_KEY",        "\"dV2So3TbHA3hKCcYnnLM8ayJaCeT1rjj9qKiUwsY\""
+        }
+    }
+}

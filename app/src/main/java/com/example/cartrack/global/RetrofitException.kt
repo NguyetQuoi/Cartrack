@@ -72,12 +72,12 @@ class RetrofitException(
          * @return [RetrofitException] check type: [HTTP_403] - response code 403, [HTTP] - response code 400
          */
         fun httpError(url: String, response: Response<*>?, retrofit: Retrofit): RetrofitException {
-            val message = response.code().toString() + " " + response.message()
+            val message = response?.code().toString() + " " + response?.message()
             val error: RetrofitException
-            if (response.code() == 403) {
+            if (response?.code() == 403) {
                 error = RetrofitException(message, response, HTTP_403, null, retrofit)
             } else {
-                if (response.code() == 400 && url.contains("/device")) {
+                if (response?.code() == 400 && url.contains("/device")) {
                     error = RetrofitException(message, response, HTTP, null, retrofit)
                 } else {
                     error = RetrofitException(message, response, HTTP, null, retrofit)

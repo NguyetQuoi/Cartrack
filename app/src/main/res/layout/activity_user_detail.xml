@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello Worldvvvv!"
+            android:text="Hello Worlddddvvvv!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -23,6 +23,6 @@
 
         <variable
             name="viewModel"
-            type="com.gc.myapplication.ui.detail.UserDetailViewModel" />
+            type="com.example.cartrack.ui.detail.UserDetailViewModel" />
     </data>
 </layout>
