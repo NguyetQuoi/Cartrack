@@ -123,21 +123,79 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
         navigationEvent.value = Event(item)
     }
 
-    override fun startActivity(clazz: Class<*>, data: Bundle?, clearTask: Boolean, finish: Boolean,
-                               animation: TransactionAnimation?) {
-        navigateTo(NavigationItem.StartActivity(clazz, data, clearTask, finish = finish, transactionAnimation = animation))
+    override fun startActivity(
+        clazz: Class<*>, data: Bundle?, clearTask: Boolean, finish: Boolean,
+        animation: TransactionAnimation?
+    ) {
+        navigateTo(
+            NavigationItem.StartActivity(
+                clazz,
+                data,
+                clearTask,
+                finish = finish,
+                transactionAnimation = animation
+            )
+        )
     }
 
     override fun startActivity(intent: Intent, data: Bundle?, animation: TransactionAnimation?) {
-        navigateTo(NavigationItem.StartActivity(intent, data, transactionAnimation = animation))
+        navigateTo(
+            NavigationItem.StartActivity(
+                intent,
+                data,
+                transactionAnimation = animation
+            )
+        )
     }
 
-    override fun startActivityForResult(clazz: Class<*>, requestCode: Int, data: Bundle?, animation: TransactionAnimation?) {
-        navigateTo(NavigationItem.StartActivity(clazz, data, false, requestCode, transactionAnimation = animation))
+    override fun startActivityForResult(
+        clazz: Class<*>,
+        requestCode: Int,
+        data: Bundle?,
+        clearTask: Boolean,
+        finish: Boolean,
+        onActivityResult: NavigationInterface.onActivityResult?,
+        animation: TransactionAnimation?
+    ) {
+        navigateTo(
+            NavigationItem.StartActivity(
+                clazz,
+                data,
+                false,
+                requestCode,
+                false,
+                onActivityResult,
+                transactionAnimation = animation
+            )
+        )
     }
+    /*
+    fun startActivityForResult(
+        intent: Intent,
+        requestCode: Int,
+        data: Bundle? = null,
+        onActivityResult: NavigationInterface.onActivityResult? = null,
+        animation: TransactionAnimation? = TransactionAnimation.NONE
+    )
+     */
 
-    override fun startActivityForResult(intent: Intent, requestCode: Int, data: Bundle?, animation: TransactionAnimation?) {
-        navigateTo(NavigationItem.StartActivity(intent, data, requestCode, transactionAnimation = animation))
+    override fun startActivityForResult(
+        intent: Intent,
+        requestCode: Int,
+        data: Bundle?,
+        onActivityResult: NavigationInterface.onActivityResult?,
+        animation: TransactionAnimation?
+    ) {
+        navigateTo(
+            NavigationItem.StartActivity(
+                intent,
+                data,
+                requestCode,
+                false,
+                onActivityResult,
+                transactionAnimation = animation
+            )
+        )
     }
 
     override fun finishActivity(data: Intent?, animation: TransactionAnimation?) {
@@ -148,8 +206,20 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
         navigateTo(NavigationItem.StartService(clazz))
     }
 
-    override fun showDialog(dialog: BaseDialogFragment<*>, tag: String, positiveClickListener: DialogInterface.OnClickListener?, negativeClickListener: DialogInterface.OnClickListener?) {
-        navigateTo(NavigationItem.ShowDialog(dialog, tag, positiveClickListener, negativeClickListener))
+    override fun showDialog(
+        dialog: BaseDialogFragment<*>,
+        tag: String,
+        positiveClickListener: DialogInterface.OnClickListener?,
+        negativeClickListener: DialogInterface.OnClickListener?
+    ) {
+        navigateTo(
+            NavigationItem.ShowDialog(
+                dialog,
+                tag,
+                positiveClickListener,
+                negativeClickListener
+            )
+        )
     }
 
     override fun dismissDialog(dialog: BaseDialogFragment<*>?) {
@@ -168,7 +238,12 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
         navigateTo(NavigationItem.ShowToast(message))
     }
 
-    override fun changeFragment(fragment: BaseFragment<*, *>, clearTask: Boolean, addToTask: Boolean, animation: TransactionAnimation) {
+    override fun changeFragment(
+        fragment: BaseFragment<*, *>,
+        clearTask: Boolean,
+        addToTask: Boolean,
+        animation: TransactionAnimation
+    ) {
         navigateTo(NavigationItem.ChangeFragment(fragment, clearTask, addToTask, animation))
     }
 

@@ -7,7 +7,7 @@
 
         <variable
             name="dialog"
-            type="com.example.cartrack.widget.dialog.GeneralAlertDialog" />
+            type="com.example.cartrack.widget.dialog.ErrorDialog" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,11 +22,10 @@
             style="@style/TextAppearance.Cartrack.DialogTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{dialog.title}"
+            android:text="@string/oops"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvMessage"
@@ -60,13 +59,12 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/margin_large"
-            android:onClick="@{dialog.okButtonClick}"
-            android:paddingStart="@dimen/_9sdp"
-            android:paddingEnd="@dimen/_9sdp"
-            android:text="@{dialog.positiveText}"
+            android:onClick="@{v -> dialog.dismiss()}"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="@string/try_again"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMessage"
-            tools:text="@android:string/ok" />
+            app:layout_constraintTop_toBottomOf="@id/tvMessage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

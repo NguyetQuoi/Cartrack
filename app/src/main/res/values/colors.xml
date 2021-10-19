@@ -3,4 +3,46 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="color_light_slate_gray">#78849e</color>
+    <color name="color_white_30">#4DFFFFFF</color>
+    <color name="color_accent_30">#4D3ACCE1</color>
+    <color name="color_secondary_30">#4D665EFF</color>
+
+    <color name="color_primary">@color/valhalla</color>
+    <color name="color_accent">@color/turquoise</color>
+
+    <color name="valhalla">#2e3649</color>
+    <color name="turquoise">#3ACCE1</color>
+    <color name="cloudBurst">#353A50</color>
+    <color name="white">#ffffff</color>
+    <color name="logan">#959DAD</color>
+    <color name="neonBlue">#665EFF</color>
+    <color name="oceanBlue">#0559ae</color>
+    <color name="royalBlue">#5773FF</color>
+    <color name="light_grey">#d6d6d6</color>
+    <color name="grey">#959DAD</color>
+    <color name="white_40">#60FFFFFF</color>
+    <color name="white_70">#c0FFFFFF</color>
+    <color name="blue">#3497FD</color>
+    <color name="yellow">#FFB900</color>
+    <color name="orange">#FF5757</color>
+    <color name="grayBlue">#2A2E43</color>
+    <color name="over_lay">#B32A2E43</color>
+    <color name="dodger_blue">#3497FD</color>
+    <color name="black66">#f8212121</color>
+    <color name="pink">#FF4F9A</color>
+    <color name="silver">#9FA7B9</color>
+
+    <color name="mediumPink">#ee6899</color>
+    <color name="purplishRed">#ae0a46</color>
+    <color name="brightPurplishRed">#ff0c65</color>
+    <color name="steel">#8e8e93</color>
+    <color name="brightLightBlue80">#cc36c2ff</color>
+    <color name="oceanBlue80">#cc0559ae</color>
+    <color name="brightLightGrey80">#ccefefef</color>
+    <color name="grey80">#cc969696</color>
+    <color name="black">#000000</color>
+    <color name="black72">#b8212121</color>
+    <color name="blackTwo">#333333</color>
 </resources>

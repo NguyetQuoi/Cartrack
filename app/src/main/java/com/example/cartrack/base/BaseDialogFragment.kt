@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.example.cartrack.R
 import com.example.cartrack.BR
 import com.example.cartrack.global.ResourceProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -62,7 +63,7 @@ abstract class BaseDialogFragment<VDB : ViewDataBinding> : DialogFragment(), Koi
     }
 
     protected fun setStyle() {
-        setStyle(STYLE_NORMAL, com.gc.myapplication.R.style.AppTheme)
+        setStyle(STYLE_NORMAL, R.style.AppTheme)
     }
 
     override fun onCreateView(

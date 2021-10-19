@@ -1,4 +1,4 @@
-package com.gc.myapplication.data.remote
+package com.example.cartrack.data.remote
 
 import com.example.cartrack.data.DataSource
 import com.example.cartrack.data.model.User

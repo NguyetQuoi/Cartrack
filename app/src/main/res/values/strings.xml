@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">My Assignment</string>
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="yes">Yes</string>
@@ -19,5 +18,8 @@
     <string name="wrong_code">The verification code you entered is wrong or\nexpired. Please try again or request new code.</string>
     <string name="location_request_sms">Before we start, remember that you must leave\nyour location services on in order for this\napplication to assist you!</string>
     <string name="location_request_title">Hold on!</string>
+    <string name="resend">resend</string>
+    <string name="oops">Oops!</string>
+    <string name="try_again">try again</string>
 
 </resources>
