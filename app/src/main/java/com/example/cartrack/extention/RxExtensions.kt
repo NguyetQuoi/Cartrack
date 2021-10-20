@@ -8,11 +8,12 @@ import io.reactivex.schedulers.Schedulers
 
 /**
  * An extension for rx
- * @author quoi.tran@com.zyrous.com
- * @date 05.13.2019
+ * @author n.quoi
+ * @date 10.20.2021
  */
 
-fun <T> Single<T>.with(): Single<T> = subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+fun <T> Single<T>.with(): Single<T> =
+    subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
 /**
  * Add assign

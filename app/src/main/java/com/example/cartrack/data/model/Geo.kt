@@ -12,6 +12,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Geo(
     @PrimaryKey(autoGenerate = true)
+    val id: Int,
 
     @ColumnInfo
     val lat: Double,

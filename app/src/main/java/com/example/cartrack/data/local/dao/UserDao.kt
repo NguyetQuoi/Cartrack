@@ -1,4 +1,4 @@
-package com.example.cartrack.data.local
+package com.example.cartrack.data.local.dao
 
 import androidx.room.*
 import com.example.cartrack.data.model.User
@@ -6,7 +6,7 @@ import com.example.cartrack.data.model.User
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addUser(user: User)
+    fun addUser(addUser: User)
 
     @Query("SELECT * FROM user WHERE id =:id")
     fun getUserDetail(id: Int?): User

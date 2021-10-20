@@ -113,7 +113,7 @@ dependencies {
     implementation libs.kotlin_ext
 
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
-    implementation libs.rx_android
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation libs.steho
 
     implementation libs.databinding_compiler
@@ -127,7 +127,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     implementation "com.google.code.gson:gson:2.8.8"
-
 
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0-rc01"
@@ -147,9 +146,9 @@ dependencies {
     implementation libs.ssp
 
     //work manager
-    implementation libs.work_runtime_ktx
-    implementation libs.work_rxjava2
-    testImplementation libs.work_testing
+    implementation "androidx.work:work-runtime-ktx:2.7.0"
+    implementation "androidx.work:work-rxjava2:2.7.0"
+    testImplementation "androidx.work:work-testing:2.7.0"
 
     testImplementation(libs.arch_comp_test) {
         exclude module: 'junit'
@@ -168,19 +167,12 @@ dependencies {
 
     implementation("androidx.multidex:multidex:2.0.1")
     implementation "androidx.startup:startup-runtime:1.1.0"
-//    androidTestImplementation libs.espresso
-//    androidTestImplementation 'androidx.test:rules:1.4.0'
-//    androidTestImplementation 'androidx.test:runner:1.4.0'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-//    androidTestImplementation 'androidx.test:core:1.4.0'
-//    androidTestImplementation(libs.koin_test) {
-//        exclude module: 'junit'
-//        exclude group: 'org.mockito'
-//    }
 
     // Room components
-    implementation "androidx.room:room-runtime:2.3.0"
-    annotationProcessor "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-ktx:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+
+    implementation 'net.zetetic:android-database-sqlcipher:4.4.0@aar'
 }
 
 allprojects {
