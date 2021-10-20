@@ -33,7 +33,7 @@ object StringUtils {
      */
     fun isNotEmpty(s: String?): Boolean {
         if (s == null) return false
-        return !(s.trim { it <= ' ' }.isEmpty() || "null" == s.toLowerCase(Locale.US))
+        return !(s.trim { it <= ' ' }.isEmpty() || "null" == s.lowercase(Locale.US))
     }
 
     /**
@@ -42,7 +42,7 @@ object StringUtils {
      */
     fun isEmpty(s: String?): Boolean {
         if (s == null) return true
-        return (s.trim { it <= ' ' }.isEmpty() || "null" == s.toLowerCase(Locale.US))
+        return (s.trim { it <= ' ' }.isEmpty() || "null" == s.lowercase(Locale.US))
     }
 
     /**

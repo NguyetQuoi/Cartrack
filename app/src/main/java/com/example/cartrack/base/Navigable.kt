@@ -51,7 +51,7 @@ interface Navigable {
         data: Bundle? = null,
         clearTask: Boolean,
         finish: Boolean = false,
-        onActivityResult: NavigationInterface.onActivityResult? = null,
+        OnActivityResult: NavigationInterface.OnActivityResult? = null,
         animation: TransactionAnimation? = TransactionAnimation.NONE
     )
 
@@ -66,7 +66,7 @@ interface Navigable {
         intent: Intent,
         requestCode: Int,
         data: Bundle? = null,
-        onActivityResult: NavigationInterface.onActivityResult? = null,
+        OnActivityResult: NavigationInterface.OnActivityResult? = null,
         animation: TransactionAnimation? = TransactionAnimation.NONE
     )
 

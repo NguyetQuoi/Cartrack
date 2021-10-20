@@ -60,13 +60,8 @@ open class GeneralAlertDialog : BaseDialogFragment<DialogGeneralAlertBinding>() 
 
     @Suppress("DEPRECATION")
     private fun fromHtml(html: String?): Spanned {
-        return when {
-            html == null ->
-                SpannableString("")
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ->
-                Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-            else -> Html.fromHtml(html)
-        }
+        return if (html == null) SpannableString("")
+        else Html.fromHtml(html)
     }
 
     /**
@@ -89,8 +84,10 @@ open class GeneralAlertDialog : BaseDialogFragment<DialogGeneralAlertBinding>() 
          * @param negativeText resource string id of negativeText
          * @return GeneralAlertDialog
          */
-        fun newInstance(@StringRes title: Int, @StringRes message: Int, @StringRes positiveText: Int,
-                        @StringRes negativeText: Int = 0): GeneralAlertDialog {
+        fun newInstance(
+            @StringRes title: Int, @StringRes message: Int, @StringRes positiveText: Int,
+            @StringRes negativeText: Int = 0
+        ): GeneralAlertDialog {
             val args = Bundle()
             val fragment = GeneralAlertDialog()
 
@@ -113,8 +110,10 @@ open class GeneralAlertDialog : BaseDialogFragment<DialogGeneralAlertBinding>() 
          * @param needLoadWithHtml [Boolean]
          * @return GeneralAlertDialog
          */
-        fun newInstance(@StringRes title: Int, message: String, @StringRes positiveText: Int,
-                        @StringRes negativeText: Int = 0, needLoadWithHtml: Boolean = false): GeneralAlertDialog {
+        fun newInstance(
+            @StringRes title: Int, message: String, @StringRes positiveText: Int,
+            @StringRes negativeText: Int = 0, needLoadWithHtml: Boolean = false
+        ): GeneralAlertDialog {
             val args = Bundle()
             val fragment = GeneralAlertDialog()
             args.putInt(TITLE_EXTRA, title)

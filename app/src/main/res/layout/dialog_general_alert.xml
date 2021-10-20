@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/TextAppearance.Cartrack.DialogTitle"
+            style="@style/TextAppearance.CarTrack.DialogTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{dialog.title}"
@@ -30,7 +30,7 @@
 
         <TextView
             android:id="@+id/tvMessage"
-            style="@style/TextAppearance.Cartrack.Body.OnBackground"
+            style="@style/TextAppearance.CarTrack.Body.OnBackground"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
@@ -42,7 +42,7 @@
 
         <Button
             android:id="@+id/btCancel"
-            style="@style/Widget.Cartrack.Button.Secondary.Negative"
+            style="@style/Widget.CarTrack.Button.Secondary.Negative"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginEnd="@dimen/margin_normal"
@@ -56,7 +56,7 @@
 
         <Button
             android:id="@+id/btSet"
-            style="@style/Widget.Cartrack.Button.Accent"
+            style="@style/Widget.CarTrack.Button.Accent"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/margin_large"
