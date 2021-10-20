@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
  * @author n.quoi
  * @date 10.18.2021
  */
-@Entity (tableName = "User")
+@Entity(tableName = "user")
 data class User(
     @PrimaryKey
     val id: Int,
@@ -37,8 +37,8 @@ data class User(
     @ColumnInfo
     val zipCode: String,
 
-    @ColumnInfo
-    val geo: Geo,
+//    @ColumnInfo
+//    val geo: Int,
 
     @ColumnInfo
     val phone: String,
@@ -46,6 +46,6 @@ data class User(
     @ColumnInfo
     val website: String,
 
-    @ColumnInfo
-    val company: Company
+//    @ColumnInfo
+//    val company: Company
 )

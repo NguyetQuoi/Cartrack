@@ -14,7 +14,19 @@ import retrofit2.Retrofit
 
 class AppRemoteStorage(retrofit: Retrofit) : DataSource {
     private val apiService: ApiService = retrofit.create(ApiService::class.java)
-    override fun getUsers(): Observable<List<User>> {
+    override fun getAllUser(): Observable<List<User>> {
         return apiService.getUser().map { response -> response.data }
+    }
+
+    override fun addUser(user: User) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteAllUser() {
+        TODO("Not yet implemented")
+    }
+
+    override fun addUsers(users: List<User>) {
+        TODO("Not yet implemented")
     }
 }

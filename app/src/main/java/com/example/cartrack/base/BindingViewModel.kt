@@ -154,7 +154,7 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
         data: Bundle?,
         clearTask: Boolean,
         finish: Boolean,
-        onActivityResult: NavigationInterface.onActivityResult?,
+        OnActivityResult: NavigationInterface.OnActivityResult?,
         animation: TransactionAnimation?
     ) {
         navigateTo(
@@ -164,7 +164,7 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
                 false,
                 requestCode,
                 false,
-                onActivityResult,
+                OnActivityResult,
                 transactionAnimation = animation
             )
         )
@@ -183,7 +183,7 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
         intent: Intent,
         requestCode: Int,
         data: Bundle?,
-        onActivityResult: NavigationInterface.onActivityResult?,
+        OnActivityResult: NavigationInterface.OnActivityResult?,
         animation: TransactionAnimation?
     ) {
         navigateTo(
@@ -192,7 +192,7 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
                 data,
                 requestCode,
                 false,
-                onActivityResult,
+                OnActivityResult,
                 transactionAnimation = animation
             )
         )

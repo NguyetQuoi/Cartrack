@@ -1,11 +1,9 @@
 package com.example.cartrack.global
 
 import android.app.Activity
-import android.app.Instrumentation
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.DialogFragment
@@ -37,7 +35,7 @@ abstract class NavigationItem {
         private val requestCode: Int,
         private val clearTask: Boolean,
         private val finish: Boolean,
-        private val onActivityResult: NavigationInterface.onActivityResult? = null,
+        private val OnActivityResult: NavigationInterface.OnActivityResult? = null,
         private val transactionAnimation: TransactionAnimation? =
             TransactionAnimation.NONE
     ) : NavigationItem() {
@@ -47,7 +45,7 @@ abstract class NavigationItem {
             clearTask: Boolean = false,
             requestCode: Int = -1,
             finish: Boolean = false,
-            onActivityResult: NavigationInterface.onActivityResult? = null,
+            OnActivityResult: NavigationInterface.OnActivityResult? = null,
             transactionAnimation: TransactionAnimation?
         )
                 : this(
@@ -57,7 +55,7 @@ abstract class NavigationItem {
             requestCode,
             clearTask,
             finish,
-            onActivityResult,
+            OnActivityResult,
             transactionAnimation
         )
 
@@ -66,7 +64,7 @@ abstract class NavigationItem {
             data: Bundle? = null,
             requestCode: Int = -1,
             finish: Boolean = false,
-            onActivityResult: NavigationInterface.onActivityResult? = null,
+            OnActivityResult: NavigationInterface.OnActivityResult? = null,
             transactionAnimation: TransactionAnimation?
         )
                 : this(
@@ -76,7 +74,7 @@ abstract class NavigationItem {
             requestCode,
             false,
             finish,
-            onActivityResult,
+            OnActivityResult,
             transactionAnimation
         )
 
@@ -89,7 +87,7 @@ abstract class NavigationItem {
                 }
                 if (requestCode >= 0) {
                     activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                        onActivityResult?.onActivityResult(result)
+                        OnActivityResult?.onActivityResult(result)
                     }.launch(intent)
 
                 } else {

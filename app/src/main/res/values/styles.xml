@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Theme.Cartrack" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.CarTrack" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/color_primary</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorAccent">@color/color_accent</item>
@@ -19,7 +19,7 @@
         <item name="colorControlNormal">@color/steel</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/light_grey</item>
-        <item name="android:dialogTheme">@style/Theme.Cartrack.Dialog</item>
+        <item name="android:dialogTheme">@style/Theme.CarTrack.Dialog</item>
         <item name="colorError">@color/purplishRed</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterAnimation">@anim/slide_in_from_left</item>
@@ -27,7 +27,7 @@
     </style>
 
     <!-- DIALOG -->
-    <style name="Theme.Cartrack.Dialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="Theme.CarTrack.Dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="android:colorBackground">@android:color/transparent</item>
@@ -40,36 +40,36 @@
     </style>
 
     <!-- TEXT VIEW -->
-    <style name="TextAppearance.Cartrack.Headline" parent="TextAppearance.MaterialComponents.Headline5">
+    <style name="TextAppearance.CarTrack.Headline" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="textAllCaps">false</item>
         <item name="android:textSize">@dimen/_24ssp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="fontFamily">@font/gibson_regular</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.BigText" parent="TextAppearance.MaterialComponents.Headline5">
+    <style name="TextAppearance.CarTrack.BigText" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="textAllCaps">false</item>
         <item name="android:textSize">@dimen/_40ssp</item>
         <item name="fontFamily">@font/gibson_semi_bold</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.MediumText" parent="TextAppearance.MaterialComponents.Headline5">
+    <style name="TextAppearance.CarTrack.MediumText" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="textAllCaps">false</item>
         <item name="android:textSize">24sp</item>
         <item name="fontFamily">@font/gibson_regular</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.Headline.OnBackground" parent="TextAppearance.Cartrack.Headline" />
+    <style name="TextAppearance.CarTrack.Headline.OnBackground" parent="TextAppearance.CarTrack.Headline" />
 
-    <style name="TextAppearance.Cartrack.Title" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="TextAppearance.CarTrack.Title" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">@dimen/_20ssp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="fontFamily">@font/gibson_regular</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.Title.Profile" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="TextAppearance.CarTrack.Title.Profile" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textSize">@dimen/_12ssp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:drawablePadding">@dimen/margin_normal</item>
@@ -77,36 +77,36 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.Title.OnBackground" parent="TextAppearance.Cartrack.Title" />
+    <style name="TextAppearance.CarTrack.Title.OnBackground" parent="TextAppearance.CarTrack.Title" />
 
-    <style name="TextAppearance.Cartrack.SubTitle" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <style name="TextAppearance.CarTrack.SubTitle" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textSize">@dimen/_13ssp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="fontFamily">@font/gibson_semi_bold</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.SubTitle.OnBackground" parent="TextAppearance.Cartrack.SubTitle" />
+    <style name="TextAppearance.CarTrack.SubTitle.OnBackground" parent="TextAppearance.CarTrack.SubTitle" />
 
-    <style name="TextAppearance.Cartrack.DialogTitle" parent="TextAppearance.Cartrack.SubTitle.OnBackground">
+    <style name="TextAppearance.CarTrack.DialogTitle" parent="TextAppearance.CarTrack.SubTitle.OnBackground">
         <item name="android:textSize">22sp</item>
         <item name="fontFamily">@font/gibson_semi_bold</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.Body" parent="TextAppearance.MaterialComponents.Body2">
+    <style name="TextAppearance.CarTrack.Body" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">@dimen/_15ssp</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="fontFamily">@font/gibson_regular</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.Body.OnBackground" parent="TextAppearance.Cartrack.Body">
+    <style name="TextAppearance.CarTrack.Body.OnBackground" parent="TextAppearance.CarTrack.Body">
         <item name="android:textSize">@dimen/_14ssp</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.EditText" parent="TextAppearance.Cartrack.SubTitle.OnBackground">
+    <style name="TextAppearance.CarTrack.EditText" parent="TextAppearance.CarTrack.SubTitle.OnBackground">
         <item name="android:background">?attr/editTextBackground</item>
     </style>
 
-    <style name="TextAppearance.Cartrack.Button" parent="TextAppearance.MaterialComponents.Button">
+    <style name="TextAppearance.CarTrack.Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textSize">@dimen/_13ssp</item>
         <item name="fontFamily">@font/gibson_semi_bold</item>
         <item name="android:textColor">?android:textColorPrimary</item>
@@ -114,15 +114,15 @@
     </style>
 
     <!-- BUTTON -->
-    <style name="Widget.Cartrack.Button" parent="Widget.MaterialComponents.Button">
+    <style name="Widget.CarTrack.Button" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">@dimen/corner_radius</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:padding">@dimen/_10sdp</item>
-        <item name="android:textAppearance">@style/TextAppearance.Cartrack.Button</item>
+        <item name="android:textAppearance">@style/TextAppearance.CarTrack.Button</item>
         <item name="elevation">0dp</item>
     </style>
 
-    <style name="Widget.Cartrack.Button.Secondary" parent="Widget.Cartrack.Button">
+    <style name="Widget.CarTrack.Button.Secondary" parent="Widget.CarTrack.Button">
         <item name="backgroundTint">@color/button_background_tint_secondary</item>
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:colorAccent">@color/color_white_30</item>
@@ -130,13 +130,13 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
-    <style name="Widget.Cartrack.Button.Accent" parent="Widget.Cartrack.Button">
+    <style name="Widget.CarTrack.Button.Accent" parent="Widget.CarTrack.Button">
         <item name="backgroundTint">@color/button_background_tint_accent</item>
         <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:textSize">@dimen/_13ssp</item>
     </style>
 
-    <style name="Widget.Cartrack.Button.Secondary.Negative" parent="Widget.Cartrack.Button.Secondary">
+    <style name="Widget.CarTrack.Button.Secondary.Negative" parent="Widget.CarTrack.Button.Secondary">
         <item name="android:textSize">@dimen/_11ssp</item>
     </style>
 

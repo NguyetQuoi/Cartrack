@@ -9,9 +9,7 @@ import com.example.cartrack.manager.UserManager
  * @date 10.19.2021
  */
 
-class UserDetailViewModel(
-    userManager: UserManager
-) : BindingViewModel(userManager) {
+class UserDetailViewModel(userManager: UserManager) : BindingViewModel(userManager) {
 
     init {
     }

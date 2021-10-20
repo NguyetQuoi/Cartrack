@@ -12,17 +12,23 @@ import io.reactivex.Observable
  */
 
 open class AppDataRepository(
-    private val context: Context,
-    private val remoteDataSource: DataSource,
-    private val offlineDataSource: DataSource,
-    private val preferenceStorage: PreferenceStorage
+    private val remoteDataSource: DataSource, private val offlineDataSource: DataSource
 ) : DataSource {
 
-    private var users: List<User> = emptyList()
-    override fun getUsers(): Observable<List<User>> {
-        return if (users.isNullOrEmpty()) {
-            remoteDataSource.getUsers()
-                .doOnNext { users = it }
-        } else Observable.just(users)
+    override fun getAllUser(): Observable<List<User>> {
+        return remoteDataSource.getAllUser()
+        //return offlineDataSource.getAllUser()
+    }
+
+    override fun addUser(user: User) {
+        offlineDataSource.addUser(user)
+    }
+
+    override fun deleteAllUser() {
+        offlineDataSource.deleteAllUser()
+    }
+
+    override fun addUsers(users: List<User>) {
+        offlineDataSource.addUsers(users)
     }
 }

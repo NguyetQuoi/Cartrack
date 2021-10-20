@@ -14,5 +14,11 @@ interface DataSource {
      * Get policy documents: Term And Condition and Policy
      * @return [Observable<List<Document>>]
      */
-    fun getUsers(): Observable<List<User>>
+    fun getAllUser(): Observable<List<User>>
+
+    fun addUser(user: User)
+
+    fun deleteAllUser()
+
+    fun addUsers(users: List<User>)
 }

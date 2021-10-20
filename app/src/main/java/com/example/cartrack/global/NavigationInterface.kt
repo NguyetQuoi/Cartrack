@@ -4,7 +4,7 @@ import android.content.DialogInterface
 import androidx.activity.result.ActivityResult
 
 public interface NavigationInterface {
-    interface onActivityResult {
+    interface OnActivityResult {
         fun onActivityResult(result: ActivityResult?)
     }
 }

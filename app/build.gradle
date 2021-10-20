@@ -178,8 +178,9 @@ dependencies {
 //        exclude group: 'org.mockito'
 //    }
 
-    implementation("androidx.room:room-runtime:2.3.0")
-    annotationProcessor("androidx.room:room-compiler:2.3.0")
+    // Room components
+    implementation "androidx.room:room-runtime:2.3.0"
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
 }
 
 allprojects {

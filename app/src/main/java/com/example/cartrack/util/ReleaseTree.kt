@@ -16,21 +16,11 @@ class ReleaseTree : Timber.Tree() {
         if (priority == Log.VERBOSE || priority == Log.DEBUG || priority == Log.INFO) {
             return
         }
-
-        //        Crashlytics.setInt(CRASHLYTICS_KEY_PRIORITY, priority);
-        //        Crashlytics.setString(CRASHLYTICS_KEY_TAG, tag);
-        //        Crashlytics.setString(CRASHLYTICS_KEY_MESSAGE, message);
-        //
-        //        if (t == null) {
-        //            Crashlytics.logException(new Exception(message));
-        //        } else {
-        //            Crashlytics.logException(t);
-        //        }
     }
 
     companion object {
-        private val CRASHLYTICS_KEY_PRIORITY = "priority"
-        private val CRASHLYTICS_KEY_TAG = "tag"
-        private val CRASHLYTICS_KEY_MESSAGE = "message"
+        private const val CRASHLYTICS_KEY_PRIORITY = "priority"
+        private const val CRASHLYTICS_KEY_TAG = "tag"
+        private const val CRASHLYTICS_KEY_MESSAGE = "message"
     }
 }
