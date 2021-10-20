@@ -7,12 +7,14 @@ import android.os.Bundle
 import androidx.multidex.BuildConfig
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
+import com.example.cartrack.data.pref.PreferenceStorage
 import com.example.cartrack.di.appModule
 import com.example.cartrack.di.networkModule
 import com.example.cartrack.di.repositoryModule
 import com.example.cartrack.di.viewModelModule
 import com.example.cartrack.util.ReleaseTree
 import com.jakewharton.threetenabp.AndroidThreeTen
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -26,6 +28,12 @@ import timber.log.Timber
  */
 
 class AssignmentApplication : MultiDexApplication(), Application.ActivityLifecycleCallbacks {
+
+    private val preferenceStorage: PreferenceStorage by inject()
+
+    private var activityReferences = 0
+    private var isActivityChangingConfigurations = false
+
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
@@ -41,11 +49,14 @@ class AssignmentApplication : MultiDexApplication(), Application.ActivityLifecyc
             Timber.plant(ReleaseTree())
         }
 
+        initKoin()
+
+    }
+
+    private fun initKoin(){
         startKoin {
-            // use Koin logger
             androidLogger()
             androidContext(this@AssignmentApplication)
-            androidFileProperties()
             // declare modules
             modules(
                 networkModule,
@@ -54,7 +65,6 @@ class AssignmentApplication : MultiDexApplication(), Application.ActivityLifecyc
                 viewModelModule
             )
         }
-
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
@@ -62,7 +72,10 @@ class AssignmentApplication : MultiDexApplication(), Application.ActivityLifecyc
     }
 
     override fun onActivityStarted(activity: Activity) {
-        //TODO: implement later
+        if (++activityReferences == 1 && !isActivityChangingConfigurations) {
+            Timber.d("App is foreground")
+            preferenceStorage.appIsForeground = true
+        }
     }
 
     override fun onActivityResumed(activity: Activity) {
@@ -74,7 +87,11 @@ class AssignmentApplication : MultiDexApplication(), Application.ActivityLifecyc
     }
 
     override fun onActivityStopped(activity: Activity) {
-        //TODO: implement later
+        isActivityChangingConfigurations = activity.isChangingConfigurations
+        if (--activityReferences == 0 && !isActivityChangingConfigurations) {
+            Timber.d("App is background")
+            preferenceStorage.appIsForeground = false
+        }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {

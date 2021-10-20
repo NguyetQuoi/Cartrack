@@ -1,5 +1,6 @@
 package com.example.cartrack.data
 
+import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
 import io.reactivex.Observable
 
@@ -16,9 +17,13 @@ interface DataSource {
      */
     fun getAllUser(): Observable<List<User>>
 
-    fun addUser(user: User)
+    fun addUser(user: User): Observable<Boolean>
 
-    fun deleteAllUser()
+    fun deleteAllUser(): Observable<Boolean>
 
-    fun addUsers(users: List<User>)
+    fun addUsers(users: List<User>): Observable<Boolean>
+
+    suspend fun mockUpAccount(account: Account): Observable<Boolean>
+
+    suspend fun login(account: Account): Observable<Boolean>
 }

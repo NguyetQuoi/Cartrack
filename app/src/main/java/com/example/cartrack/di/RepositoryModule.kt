@@ -1,32 +1,46 @@
 package com.example.cartrack.di
 
-import android.app.Application
 import androidx.room.Room
 import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.DataSource
-import com.example.cartrack.data.local.CartrackDatabase
+import com.example.cartrack.data.local.CarTrackDatabase
 import com.example.cartrack.data.local.RoomDatabaseStorage
-import com.example.cartrack.data.local.UserDao
 import com.example.cartrack.data.remote.AppRemoteStorage
-import org.koin.android.ext.koin.androidApplication
+import com.example.cartrack.extention.db
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    fun provideDataBase(application: Application): CartrackDatabase {
-        return Room.databaseBuilder(application, CartrackDatabase::class.java, "CARTRACK_DB")
+
+    single {
+        Room.databaseBuilder(androidContext(), CarTrackDatabase::class.java, "DB")
             .fallbackToDestructiveMigration()
+            .openHelperFactory(SupportFactory(SQLiteDatabase.getBytes("PassPhrase".toCharArray())))
             .build()
     }
 
-    fun provideDao(dataBase: CartrackDatabase): UserDao {
-        return dataBase.userDao
+    single { db().accountDao() }
+
+    single { db().userDao() }
+
+    single<DataSource>(named(Scopes.REMOTE)) { AppRemoteStorage(get()) }
+    single<DataSource>(named(Scopes.LOCAL)) {
+        RoomDatabaseStorage(
+            get(),
+            get(),
+            get()
+        )
     }
 
-    single { provideDataBase(androidApplication()) }
-    single { provideDao(get()) }
-    single<DataSource>(named(Scopes.REMOTE)) { AppRemoteStorage(get()) }
-    single<DataSource>(named(Scopes.LOCAL)) { RoomDatabaseStorage(get(), get(), get()) }
-    single { AppDataRepository(get(named(Scopes.REMOTE)), get(named(Scopes.LOCAL))) }
-
+    single {
+        AppDataRepository(
+            get(),
+            get(named(Scopes.REMOTE)),
+            get(named(Scopes.LOCAL)),
+            get()
+        )
+    }
 }

@@ -12,6 +12,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Company(
     @PrimaryKey(autoGenerate = true)
+    val id: Int,
 
     @ColumnInfo
     val name: String,
