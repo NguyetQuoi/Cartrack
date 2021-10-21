@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.annotation.WorkerThread
 import androidx.core.content.edit
 import androidx.lifecycle.MutableLiveData
+import com.example.cartrack.data.model.Account
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.properties.ReadWriteProperty
@@ -18,6 +19,8 @@ import kotlin.reflect.KProperty
 
 interface PreferenceStorage {
     var appIsForeground: Boolean
+
+    var user: Account?
 }
 
 /**
@@ -33,6 +36,8 @@ class SharedPreferenceStorage(context: Context, gson: Gson) : PreferenceStorage 
     private val observableAppIsForegroundResult = MutableLiveData<Boolean>()
 
     override var appIsForeground by BooleanPreference(prefs, PREF_APP_IS_FOREGROUND, false)
+    override var user by ObjectPreference(prefs, PREF_USER, gson, Account::class.java)
+
     private val changeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         when (key) {
             PREF_APP_IS_FOREGROUND -> observableAppIsForegroundResult.value = appIsForeground
@@ -40,8 +45,9 @@ class SharedPreferenceStorage(context: Context, gson: Gson) : PreferenceStorage 
     }
 
     companion object {
-        const val PREFS_NAME = "crowdpop"
+        const val PREFS_NAME = "cartrack"
         const val PREF_APP_IS_FOREGROUND = "pref_app_is_foreground"
+        const val PREF_USER = "pref_user"
     }
 
     init {
