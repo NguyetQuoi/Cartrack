@@ -4,8 +4,6 @@ import android.os.Bundle
 import com.example.cartrack.R
 import com.example.cartrack.base.BaseActivity
 import com.example.cartrack.databinding.ActivitySplashBinding
-import com.example.cartrack.databinding.ActivityUserDetailBinding
-import com.example.cartrack.ui.detail.UserDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -21,7 +19,6 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.showToast("aha")
         viewModel.mockupAccount()
     }
 }
