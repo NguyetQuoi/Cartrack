@@ -1,8 +1,12 @@
 package com.example.cartrack.ui.list
 
+import android.graphics.Color
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.cartrack.base.BaseRecyclerViewAdapter
 import com.example.cartrack.base.BindingViewModel
+import com.example.cartrack.base.Navigable
 import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.extention.plusAssign
@@ -19,6 +23,7 @@ import timber.log.Timber
  */
 
 class ListUserViewModel(
+    private val navigable: Navigable,
     userManager: UserManager,
     private val appDataRepository: AppDataRepository,
     private val schedulerProvider: SchedulerProvider,
@@ -26,9 +31,19 @@ class ListUserViewModel(
 
     private var users: MutableLiveData<List<UserObject>> = MutableLiveData(emptyList())
 
-    val userAdapter = UserAdapter()
+    val userAdapter = UserAdapter().apply {
+        setItemClickListener(object : BaseRecyclerViewAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                val user = getItem(position)
+            }
+        })
+    }
 
-    fun getUserList() {
+    init {
+        getUserList()
+    }
+
+    private fun getUserList() {
         showLoadingDialog()
         appDataRepository.getUsers()
             .observeOn(schedulerProvider.ui())

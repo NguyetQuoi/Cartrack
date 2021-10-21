@@ -17,11 +17,6 @@ class ListUserActivity : BaseActivity<ListUserViewModel, ActivityListUserBinding
 
     override val layoutId: Int = R.layout.activity_list_user
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getUserList()
-    }
-
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         viewModel.notifyDataUserChange()
