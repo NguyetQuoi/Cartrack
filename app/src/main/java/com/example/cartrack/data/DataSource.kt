@@ -25,5 +25,5 @@ interface DataSource {
 
     suspend fun mockUpAccount(account: Account): Observable<Boolean>
 
-    suspend fun login(account: Account): Observable<Boolean>
+    suspend fun login(username: String, password: String): Observable<Boolean>
 }

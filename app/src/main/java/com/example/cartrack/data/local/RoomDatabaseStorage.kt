@@ -8,6 +8,7 @@ import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
 import com.google.gson.Gson
 import io.reactivex.Observable
+import timber.log.Timber
 
 /**
  * Member of DataSource
@@ -46,7 +47,8 @@ class RoomDatabaseStorage(
         return Observable.just(accountDao.addAccount(account).toInt() == 1)
     }
 
-    override suspend fun login(account: Account): Observable<Boolean> {
-        return Observable.just(accountDao.getAccount(account.userName, account.password) == 1)
+    override suspend fun login(username: String, password: String): Observable<Boolean> {
+        val count = accountDao.getAccount(username, password)
+        return Observable.just(count == 1)
     }
 }

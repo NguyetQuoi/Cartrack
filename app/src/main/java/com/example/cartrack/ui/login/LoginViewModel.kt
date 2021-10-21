@@ -1,6 +1,8 @@
 package com.example.cartrack.ui.login
 
 import androidx.databinding.ObservableBoolean
+import androidx.lifecycle.viewModelScope
+import androidx.room.util.StringUtil
 import com.example.cartrack.base.BindingViewModel
 import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.extention.plusAssign
@@ -9,6 +11,8 @@ import com.example.cartrack.manager.UserManager
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -23,9 +27,9 @@ class LoginViewModel(
     private val schedulerProvider: SchedulerProvider
 ) : BindingViewModel(userManager) {
 
-    val signInUsername = RxProperty<String>()
-    val signInPassword = RxProperty<String>()
-    val enableContinueSignInButton = RxProperty(false)
+    val signInUsername = RxProperty<String>("MochiHeoQuay")
+    val signInPassword = RxProperty<String>("moChi020#abc")
+    val enableLogInButton = RxProperty(false)
     val isTogglePassword = ObservableBoolean(false)
 
     init {
@@ -37,10 +41,38 @@ class LoginViewModel(
                         && password.isNotEmpty()
                         && isUsernameValid(username)
                         && isPasswordValid(password)
-            }).subscribe { enableContinueSignInButton.set(it) } += disposeBag
+            }).subscribe { enableLogInButton.set(it) } += disposeBag
     }
 
-    fun onContinueSignIn() {
+    fun onContinueLogIn() {
+        signInUsername.get()?.let { username ->
+            signInPassword.get()?.let { password ->
+                showLoadingDialog()
+                viewModelScope.launch {
+                    appDataRepository.login(username, password)
+                        .observeOn(schedulerProvider.ui())
+                        .doFinally { dismissLoadingDialog() }
+                        .subscribe({
+                            loginResult(it)
+                        }, {
+                            handleError(it)
+                        })
+                }
+            }
+        }
+    }
+
+    private fun gotoUserListScreen() {
+        showToast("gotoUserListScreen")
+    }
+
+    private fun loginResult(result: Boolean) {
+        if (result) {
+            gotoUserListScreen()
+            return
+        }
+
+        showToast("Login fail with wrong username or password. Please try again!")
     }
 
     /**
@@ -61,7 +93,7 @@ class LoginViewModel(
      */
     private fun isPasswordValid(password: String): Boolean {
         //must contain upper case, lower case, numeric, special chars, min 7 chars
-        val format = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~\$^+=<>]).{8,20}\$"
+        val format = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~\$^+=<>]).{7,20}\$"
         val pattern = Pattern.compile(
             format,
             Pattern.CASE_INSENSITIVE

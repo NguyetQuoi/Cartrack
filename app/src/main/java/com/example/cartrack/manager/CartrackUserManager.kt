@@ -4,7 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.cartrack.R
+import com.example.cartrack.data.AppDataRepository
+import com.example.cartrack.data.model.Account
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.example.cartrack.data.model.User
 import com.example.cartrack.data.pref.PreferenceStorage
@@ -13,6 +16,8 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import okhttp3.Request
 import timber.log.Timber
 
@@ -23,18 +28,22 @@ import timber.log.Timber
  * @date 05.19.2019
  */
 
-class CartrackUserManager(_context: Context, preferenceStorage: PreferenceStorage)
-    : CartrackUserInit(_context, preferenceStorage), UserManager {
-    override fun signIn(id: String, pw: String, name: String): Single<String> {
-        return signInObservable(id, pw, name)
+class CartrackUserManager(
+    context: Context,
+    preferenceStorage: PreferenceStorage,
+    private val appDataRepository: AppDataRepository,
+) : CartrackUserInit(context, preferenceStorage), UserManager {
+
+    override suspend fun signIn(username: String, password: String, name: String): Single<String> {
+        return signInObservable(username, password)
             .subscribeOn(Schedulers.io())
     }
 
-    override fun signOut() {
+    override suspend fun signOut() {
         TODO("implement later")
     }
 
-    private fun signInObservable(id: String, pw: String, name: String): Single<String> {
+    private suspend fun signInObservable(username: String, password: String): Single<String> {
         return Single.create {
         }
     }

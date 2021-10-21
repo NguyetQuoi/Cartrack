@@ -28,7 +28,7 @@ class SplashViewModel(
     }
 
     fun mockupAccount() {
-        val mockupAcc = Account(1, "NQ", "moChi020#abc", "Singapore")
+        val mockupAcc = Account(1, "MochiHeoQuay", "moChi020#abc", "Singapore")
         mockupAcc.let {
             viewModelScope.launch {
                 appDataRepository.mockUpAccount(it)
@@ -43,7 +43,7 @@ class SplashViewModel(
         }
     }
 
-    fun goToLoginScreen(){
+    private fun goToLoginScreen() {
         startActivity(LoginActivity::class.java, finish = true, clearTask = true)
     }
 }
