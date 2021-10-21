@@ -1,21 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSignInGroup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.login.LoginActivity">
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_small">
 
-        <TextView
+        <EditText
+            android:id="@+id/etUsernameLogIn"
+            style="@style/TextAppearance.CarTrack.TextInputLayout.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_text_height"
+            android:hint="@string/txt_hint_user_name"
+            android:inputType="text"
+            android:text="@={viewModel.signInUsername}"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etPasswordLogIn"
+            style="@style/TextAppearance.CarTrack.TextInputLayout.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/input_text_height"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:hint="@string/txt_hint_pw"
+            android:inputType="textPassword"
+            android:text="@={viewModel.signInPassword}"
+            app:layout_constraintTop_toBottomOf="@+id/etUsernameLogIn"
+            app:passwordToggle="@{viewModel.isTogglePassword}" />
+
+        <CheckBox
+            android:id="@+id/cbPasswordToggleSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="login"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:button="@drawable/ic_password_toggle"
+            android:checked="@={viewModel.isTogglePassword}"
+            app:layout_constraintBottom_toBottomOf="@id/etPasswordLogIn"
+            app:layout_constraintEnd_toEndOf="@id/etPasswordLogIn"
+            app:layout_constraintTop_toTopOf="@id/etPasswordLogIn" />
+
+        <Button
+            android:id="@+id/btContinueLogIn"
+            style="@style/Widget.CarTrack.Button.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/_45sdp"
+            android:enabled="@{viewModel.enableLogInButton, default=false}"
+            android:onClick="@{v -> viewModel.onContinueLogIn()}"
+            android:text="@string/cont"
+            app:layout_constraintTop_toBottomOf="@id/etPasswordLogIn" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            app:layout_constraintTop_toBottomOf="@+id/btContinueLogIn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,6 +2,7 @@ package com.example.cartrack.manager
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -17,10 +18,10 @@ interface UserManager {
      * @param pw password
      * @return Single<String>
      */
-    fun signIn(id: String, pw: String, name: String): Single<String>
+    suspend fun signIn(id: String, pw: String, name: String): Single<String>
 
     /**
      * This has cleared all tokens and this user will have to go through the authentication process to get tokens.
      */
-    fun signOut()
+    suspend fun signOut()
 }

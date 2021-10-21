@@ -36,7 +36,7 @@ class AppRemoteStorage(retrofit: Retrofit) : DataSource {
         return Observable.just(true)
     }
 
-    override suspend fun login(account: Account): Observable<Boolean> {
+    override suspend fun login(username: String, password: String): Observable<Boolean> {
         return Observable.just(true)
     }
 }
