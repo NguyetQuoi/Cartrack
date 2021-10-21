@@ -8,6 +8,7 @@ import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.extention.plusAssign
 import com.example.cartrack.global.RxProperty
 import com.example.cartrack.manager.UserManager
+import com.example.cartrack.ui.list.ListUserActivity
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
@@ -50,7 +51,7 @@ class LoginViewModel(
                 showLoadingDialog()
                 viewModelScope.launch {
                     appDataRepository.login(username, password)
-                        .observeOn(schedulerProvider.ui())
+                        //.observeOn(schedulerProvider.ui())
                         .doFinally { dismissLoadingDialog() }
                         .subscribe({
                             loginResult(it)
@@ -62,13 +63,13 @@ class LoginViewModel(
         }
     }
 
-    private fun gotoUserListScreen() {
-        showToast("gotoUserListScreen")
+    private fun gotoListScreen() {
+        startActivity(ListUserActivity::class.java, finish = true, clearTask = true)
     }
 
     private fun loginResult(result: Boolean) {
         if (result) {
-            gotoUserListScreen()
+            gotoListScreen()
             return
         }
 

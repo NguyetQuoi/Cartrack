@@ -5,7 +5,6 @@ import androidx.room.RoomDatabase
 import com.example.cartrack.data.local.dao.AccountDao
 import com.example.cartrack.data.local.dao.UserDao
 import com.example.cartrack.data.model.Account
-import com.example.cartrack.data.model.Company
 import com.example.cartrack.data.model.User
 
 interface ICarTrackDatabase {
@@ -14,7 +13,7 @@ interface ICarTrackDatabase {
 }
 
 @Database(
-    entities = [User::class, Company::class, Account::class],
+    entities = [User::class, Account::class],
     version = 2,
     exportSchema = false
 )

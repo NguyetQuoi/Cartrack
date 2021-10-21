@@ -1,4 +1,5 @@
 package com.example.cartrack.di
+
 import com.example.cartrack.BuildConfig
 import com.example.cartrack.global.RxErrorHandlingCallAdapterFactory
 import com.example.cartrack.util.DeviceUtils
@@ -19,6 +20,7 @@ val networkModule = module {
         Interceptor { chain ->
             val originalRequest = chain.request()
             val builder = originalRequest.newBuilder()
+                .addHeader("Content-Type", "application/json")
             val newRequest = builder.build()
             chain.proceed(newRequest)
         }
@@ -36,7 +38,8 @@ val networkModule = module {
             .cache(
                 Cache(
                     File(androidContext().cacheDir, "OkCache"),
-                DeviceUtils.calcCacheSize(androidContext(), .25f))
+                    DeviceUtils.calcCacheSize(androidContext(), .25f)
+                )
             )
             .build()
     }

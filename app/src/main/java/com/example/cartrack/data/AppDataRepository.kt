@@ -3,8 +3,10 @@ package com.example.cartrack.data
 import android.content.Context
 import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
+import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.data.pref.PreferenceStorage
 import io.reactivex.Observable
+import timber.log.Timber
 
 /**
  * AppDataRepository all repositories of app
@@ -19,22 +21,16 @@ open class AppDataRepository(
     private val preferenceStorage: PreferenceStorage
 ) : DataSource {
 
-    override fun getAllUser(): Observable<List<User>> {
-        return remoteDataSource.getAllUser().doOnNext {
-            offlineDataSource.addUsers(it)
-        }
-    }
-
     override fun addUser(user: User): Observable<Boolean> {
         return offlineDataSource.addUser(user)
     }
 
-    override fun deleteAllUser(): Observable<Boolean> {
-        return offlineDataSource.deleteAllUser()
-    }
-
     override fun addUsers(users: List<User>): Observable<Boolean> {
         return offlineDataSource.addUsers(users)
+    }
+
+    override fun getUsers(): Observable<List<UserObject>> {
+        return remoteDataSource.getUsers()
     }
 
     override suspend fun mockUpAccount(account: Account): Observable<Boolean> {

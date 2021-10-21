@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.cartrack.R
 import com.example.cartrack.global.*
 import com.example.cartrack.manager.UserManager
-import com.example.cartrack.util.FetcherListener
 import com.example.cartrack.util.StringUtils
 import com.example.cartrack.widget.dialog.ErrorDialog
 import io.reactivex.Observable
@@ -27,8 +26,6 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
      * to UI component that bound with this ViewModel
      */
     var navigationEvent = MutableLiveData<Event<NavigationItem>>()
-
-    var fetcherListener: FetcherListener? = null
 
     var isUnitTest = false
 
@@ -54,30 +51,6 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
     protected var onErrorLogConsumer: Consumer<in Throwable> = Consumer { Timber.e(it) }
 
     val userSignedIn = RxProperty(false)
-
-//    init {
-//        userManager.userState().observeForever {
-//            Timber.d("UserState change: ${it.userState}")
-//            handleUserState(it.userState)
-//        }
-//    }
-//
-//    protected open fun handleUserState(userState: UserState) {
-//        when (userState) {
-//            UserState.SIGNED_IN -> {
-//                userSignedIn.set(true)
-//            }
-//            UserState.SIGNED_OUT_FEDERATED_TOKENS_INVALID,
-//            UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID -> {
-//                handleSessionExpired()
-//                userSignedIn.set(false)
-//            }
-//            UserState.SIGNED_OUT -> {
-//                userSignedIn.set(false)
-//            }
-//            else -> Timber.i("unsupported: $userState")
-//        }
-//    }
 
     /**
      * Handle network error. If want to handle session expired, should override handleSessionExpired methods, eg: logout,..
@@ -116,7 +89,6 @@ open class BindingViewModel(protected val userManager: UserManager) : BaseViewMo
     protected open fun handleSessionExpired() {
         Timber.d("Token is expired")
         showToast(R.string.session_expired)
-        //startActivity(WelcomeActivity::class.java, clearTask = true, finish = true)
     }
 
     private fun navigateTo(item: NavigationItem) {
