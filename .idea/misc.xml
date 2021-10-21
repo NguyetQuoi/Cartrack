@@ -8,6 +8,7 @@
         <entry key="../Cartrack/app/src/main/res/drawable/et_bg.xml" value="0.24635416666666668" />
         <entry key="../Cartrack/app/src/main/res/drawable/ic_password_toggle.xml" value="0.24635416666666668" />
         <entry key="../Cartrack/app/src/main/res/drawable/ic_visibility_black_24dp.xml" value="0.24635416666666668" />
+        <entry key="../Cartrack/app/src/main/res/layout/activity_list_user.xml" value="0.12228260869565218" />
         <entry key="../Cartrack/app/src/main/res/layout/activity_login.xml" value="0.11412193850964043" />
         <entry key="../Cartrack/app/src/main/res/layout/activity_splash.xml" value="0.12228260869565218" />
         <entry key="../Cartrack/app/src/main/res/layout/dialog_general_alert.xml" value="0.1" />
