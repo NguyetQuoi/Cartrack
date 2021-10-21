@@ -1,5 +1,7 @@
 package com.example.cartrack.di
 
+import com.example.cartrack.data.model.User
+import com.example.cartrack.data.model.UserDeserializer
 import com.example.cartrack.data.pref.PreferenceStorage
 import com.example.cartrack.data.pref.SharedPreferenceStorage
 import com.example.cartrack.global.AppResourceProvider
@@ -21,6 +23,7 @@ val appModule = module {
         GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .setDateFormat(Constants.APP_DATE_TIME_FORMAT)
+            //.registerTypeAdapter(User::class.java, UserDeserializer())
             .setLenient()
             .create()
     }

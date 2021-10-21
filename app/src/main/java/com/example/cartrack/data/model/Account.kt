@@ -23,4 +23,4 @@ data class Account(
 
     @ColumnInfo
     val country: String
-)
+) : Model

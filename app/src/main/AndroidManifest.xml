@@ -28,6 +28,10 @@
             android:name=".ui.login.LoginActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".ui.list.ListUserActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
