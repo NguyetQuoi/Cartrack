@@ -19,6 +19,11 @@ class ListUserActivity : BaseActivity<ListUserViewModel, ActivityListUserBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.setData()
+        viewModel.getUserList()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        viewModel.notifyDataUserChange()
     }
 }

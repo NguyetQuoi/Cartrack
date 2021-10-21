@@ -1,5 +1,7 @@
 package com.example.cartrack.ui.list
 
+import android.graphics.Color
+import android.view.View
 import androidx.databinding.ObservableField
 import com.example.cartrack.base.BaseItemViewModel
 import com.example.cartrack.data.model.UserObject
@@ -10,7 +12,7 @@ import com.example.cartrack.data.model.UserObject
  * @author n.quoi
  * @date 10.21.2021
  */
-class UserItemViewModel(val user: UserObject) : BaseItemViewModel(false) {
+class UserItemViewModel(val user: UserObject, val selected: Boolean = false) :
+    BaseItemViewModel(selected) {
     val userName = ObservableField(user.name)
-    val company = ObservableField(user.company.name)
 }

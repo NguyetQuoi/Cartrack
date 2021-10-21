@@ -10,7 +10,7 @@
     <color name="color_secondary_30">#4D665EFF</color>
     <color name="color_east_bay">#454F63</color>
 
-    <color name="color_primary">@color/oceanBlue</color>
+    <color name="color_primary">@color/white_40</color>
     <color name="color_accent">@color/turquoise</color>
 
     <color name="valhalla">#2e3649</color>

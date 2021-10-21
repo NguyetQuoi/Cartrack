@@ -10,6 +10,7 @@ import com.example.cartrack.manager.UserManager
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.functions.Consumer
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * ListUserViewModel for [ListUserActivity]
@@ -27,49 +28,36 @@ class ListUserViewModel(
 
     val userAdapter = UserAdapter()
 
-    init {
-        getUserList()
-    }
-
-    private fun getUserList() {
+    fun getUserList() {
         showLoadingDialog()
-
-        viewModelScope.launch {
-            appDataRepository.getUsers()
-                .observeOn(schedulerProvider.ui())
-                .doOnComplete { dismissLoadingDialog() }
-                .subscribe(Consumer {
-                    if (it.isNotEmpty()) {
-                        users.value = it
-                    }
-                }, commonOnErrorConsumer) += disposeBag
-        }
-    }
-
-    fun setData() {
-        users.value?.let {
-            setUsers(it)
-        }
+        appDataRepository.getUsers()
+            .observeOn(schedulerProvider.ui())
+            .subscribe(Consumer { userList ->
+                dismissLoadingDialog()
+                if (userList.isNotEmpty()) {
+                    users.value = userList
+                    setUsers(userList)
+                }
+            }, commonOnErrorConsumer) += disposeBag
     }
 
     /**
-     * Set category data for view model
+     * Set user data for adapter
      * @param users [List<UserObject>]
      */
     private fun setUsers(users: List<UserObject>) {
+        userAdapter.itemsSource.clear()
         userAdapter.itemsSource.addAll(users.map {
             UserItemViewModel(it)
         })
+        notifyDataUserChange()
     }
 
     /**
      * Notify data set changed
      */
-    fun notifyDataSetChange() {
+    fun notifyDataUserChange() {
         userAdapter.notifyDataSetChanged()
-    }
-
-    private fun getSelectedCategories(): List<UserObject> {
-        return userAdapter.selectedItems.map { it.user }
+        showToast(userAdapter.itemCount.toString())
     }
 }
