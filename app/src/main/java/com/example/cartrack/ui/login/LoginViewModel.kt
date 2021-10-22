@@ -59,7 +59,7 @@ class LoginViewModel(
                         .observeOn(schedulerProvider.ui())
                         .doFinally { dismissLoadingDialog() }
                         .subscribe({
-                            afterLogin(it)
+                            loginResult(it)
                         }, {
                             handleError(it)
                         })
@@ -72,9 +72,15 @@ class LoginViewModel(
         startActivity(ListUserActivity::class.java, finish = true, clearTask = true)
     }
 
-    private fun afterLogin(account: Account) {
-        preferenceStorage.user = account
-        gotoListScreen()
+    private fun loginResult(result: Boolean) {
+        if (result) {
+            preferenceStorage.user =
+                Account(1, signInUsername.get() ?: "", signInPassword.get() ?: "", "")
+            gotoListScreen()
+            return
+        }
+
+        showToast("Login fail due to wrong username or password. Please try again!")
     }
 
     /**
