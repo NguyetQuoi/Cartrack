@@ -5,6 +5,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('ct.jks')
+            storePassword 'cartrack'
+            keyAlias = 'android'
+            keyPassword 'cartrack'
+        }
+    }
+
     compileSdkVersion build_version.compile_sdk_version
 
     packagingOptions {
