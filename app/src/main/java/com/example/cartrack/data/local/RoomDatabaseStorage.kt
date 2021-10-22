@@ -38,15 +38,13 @@ class RoomDatabaseStorage(
 
     override fun getUsers(): Observable<List<UserObject>> {
         return Observable.just(emptyList())
-//        return Observable.just(userDao.getAllUser())
     }
 
     override suspend fun mockUpAccount(account: Account): Observable<Boolean> {
         return Observable.just(accountDao.addAccount(account).toInt() == 1)
     }
 
-    override suspend fun login(username: String, password: String): Observable<Boolean> {
-        val count = accountDao.getAccount(username, password)
-        return Observable.just(count == 1)
+    override suspend fun login(username: String, password: String): Observable<Account> {
+        return Observable.just(accountDao.getAccount(username, password))
     }
 }

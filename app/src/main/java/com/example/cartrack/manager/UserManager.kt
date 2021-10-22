@@ -20,5 +20,5 @@ interface UserManager {
     /**
      * This has cleared all tokens and this user will have to go through the authentication process to get tokens.
      */
-    suspend fun signOut()
+    fun signOut()
 }
