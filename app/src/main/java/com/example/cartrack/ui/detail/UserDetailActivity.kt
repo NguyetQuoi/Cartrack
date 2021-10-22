@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import com.example.cartrack.R
 import com.example.cartrack.base.BaseActivity
 import com.example.cartrack.base.BaseMapActivity
@@ -40,13 +41,9 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val user = bundle?.getSerializable(USER_EXTRA) as UserObject
-        this.user = user
-        this.location = LatLng(user.address.geo.lat.toDouble(), user.address.geo.lng.toDouble())
-        viewModel.setData(user)
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment?
-        mapFragment?.getMapAsync(this)
+        setupData(savedInstanceState)
+        initMap()
+        initAction()
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -58,6 +55,36 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
         }
     }
 
-    override fun locationEnabled() {}
-    override fun lastLocationUpdated(latLng: LatLng) {}
+    private fun setupData(savedInstanceState: Bundle?) {
+        val user = bundle?.getSerializable(USER_EXTRA) as UserObject
+        this.user = user
+        this.location = LatLng(user.address.geo.lat.toDouble(), user.address.geo.lng.toDouble())
+        viewModel.setData(user)
+    }
+
+    private fun initMap() {
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment?
+        mapFragment?.getMapAsync(this)
+    }
+
+    private fun initAction() {
+        viewModel.isMyLocationButtonClick.observe(this, Observer {
+            if (it) {
+                moveToMyLocation()
+            }
+        })
+    }
+
+    private fun moveToMyLocation() {
+        lastLocation.value?.let {
+            val latLng = LatLng(it.latitude, it.longitude)
+            val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
+            map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
+            map?.animateCamera(update)
+        }
+    }
+
+    override fun lastLocationUpdated(latLng: LatLng) {
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+    }
 }

@@ -12,10 +12,13 @@ import androidx.lifecycle.MutableLiveData
 import com.example.cartrack.R
 import com.example.cartrack.util.PermissionUtils
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 
 
@@ -36,19 +39,14 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
 
     private val myLocationRequestCode = 999
 
-    private var locationRequest: LocationRequest = LocationRequest()
+    private var locationRequest: LocationRequest = LocationRequest.create().apply {
+        interval = 100
+        fastestInterval = 50
+        priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        maxWaitTime = 100
+    }
     protected var lastLocation: MutableLiveData<LatLng> = MutableLiveData()
     private var fusedLocationClient: FusedLocationProviderClient? = null
-
-    init {
-        locationRequest.interval = 10 * 1000L
-        locationRequest.fastestInterval = 10 * 1000L
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-    }
-
-    abstract fun locationEnabled()
-
-    abstract fun lastLocationUpdated(latLng: LatLng)
 
     override fun onMapReady(googleMap: GoogleMap?) {
         map = googleMap
@@ -56,6 +54,8 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
             requestLocationPermission()
         }
     }
+
+    abstract fun lastLocationUpdated(latLng: LatLng)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,8 +74,6 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            map?.isMyLocationEnabled = false
-            locationEnabled()
             fusedLocationClient?.requestLocationUpdates(
                 locationRequest,
                 locationCallback,
@@ -103,8 +101,6 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
                 permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED
             ) {
-                map?.isMyLocationEnabled = false
-                locationEnabled()
                 fusedLocationClient?.requestLocationUpdates(
                     locationRequest,
                     locationCallback,
