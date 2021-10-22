@@ -20,6 +20,17 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:adapter="@{viewModel.userAdapter}" />
 
+        <Button
+            android:id="@+id/btLogOut"
+            style="@style/Widget.CarTrack.Button.Secondary"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:onClick="@{v -> viewModel.onLogOutClicked()}"
+            android:text="@string/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>

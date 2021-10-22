@@ -74,4 +74,8 @@ class ListUserViewModel(
     fun notifyDataUserChange() {
         userAdapter.notifyDataSetChanged()
     }
+
+    fun onLogOutClicked(){
+
+    }
 }
