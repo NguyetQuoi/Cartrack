@@ -1,20 +1,16 @@
 package com.example.cartrack.ui.list
-
-import android.graphics.Color
 import android.view.View
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.cartrack.base.BaseRecyclerViewAdapter
 import com.example.cartrack.base.BindingViewModel
-import com.example.cartrack.base.Navigable
 import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.extention.plusAssign
+import com.example.cartrack.global.TransactionAnimation
 import com.example.cartrack.manager.UserManager
+import com.example.cartrack.ui.detail.UserDetailActivity
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.functions.Consumer
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 /**
  * ListUserViewModel for [ListUserActivity]
@@ -23,7 +19,6 @@ import timber.log.Timber
  */
 
 class ListUserViewModel(
-    private val navigable: Navigable,
     userManager: UserManager,
     private val appDataRepository: AppDataRepository,
     private val schedulerProvider: SchedulerProvider,
@@ -35,6 +30,11 @@ class ListUserViewModel(
         setItemClickListener(object : BaseRecyclerViewAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val user = getItem(position)
+                startActivity(
+                    UserDetailActivity::class.java,
+                    UserDetailActivity.createBundleExtra(user.user),
+                    animation = TransactionAnimation.FROM_BOTTOM_TO_TOP
+                )
             }
         })
     }
@@ -73,6 +73,9 @@ class ListUserViewModel(
      */
     fun notifyDataUserChange() {
         userAdapter.notifyDataSetChanged()
-        showToast(userAdapter.itemCount.toString())
+    }
+
+    fun onLogOutClicked(){
+
     }
 }

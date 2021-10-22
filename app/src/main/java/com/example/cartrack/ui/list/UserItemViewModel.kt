@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import androidx.databinding.ObservableField
 import com.example.cartrack.base.BaseItemViewModel
+import com.example.cartrack.base.Navigable
 import com.example.cartrack.data.model.UserObject
 
 /**
