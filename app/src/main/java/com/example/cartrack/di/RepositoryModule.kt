@@ -18,7 +18,7 @@ val repositoryModule = module {
     single {
         Room.databaseBuilder(androidContext(), CarTrackDatabase::class.java, "DB")
             .fallbackToDestructiveMigration()
-            //.openHelperFactory(SupportFactory(SQLiteDatabase.getBytes("PassPhrase".toCharArray())))
+            .openHelperFactory(SupportFactory(SQLiteDatabase.getBytes("PassPhrase".toCharArray())))
             .build()
     }
 
