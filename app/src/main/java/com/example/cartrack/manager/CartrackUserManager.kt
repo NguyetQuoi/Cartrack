@@ -24,8 +24,8 @@ import timber.log.Timber
 /**
  * A support for AWS Cognito User
  *
- * @author quoi.tran@com.zyrous.com
- * @date 05.19.2019
+ * @author n.quoi
+ * @date 10.19.2021
  */
 
 class CartrackUserManager(
@@ -40,7 +40,7 @@ class CartrackUserManager(
     }
 
     override suspend fun signOut() {
-        TODO("implement later")
+        mCurrentUser = null
     }
 
     private suspend fun signInObservable(username: String, password: String): Single<String> {

@@ -1,8 +1,5 @@
 package com.example.cartrack.manager
 
-import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
-import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
