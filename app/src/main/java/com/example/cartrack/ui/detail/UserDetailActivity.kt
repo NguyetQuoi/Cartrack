@@ -85,6 +85,5 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
     }
 
     override fun lastLocationUpdated(latLng: LatLng) {
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
     }
 }
