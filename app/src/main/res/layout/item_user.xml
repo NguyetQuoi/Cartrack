@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,14 +9,28 @@
             type="com.example.cartrack.ui.list.UserItemViewModel" />
     </data>
 
-    <TextView
-        style="@style/TextAppearance.CarTrack.MediumText"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSignInGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:gravity="center"
-        android:text="@{viewModel.userName}"
-        android:background="@color/royalBlue"
-        android:textColor="@color/white" />
+        android:paddingStart="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_small">
 
+        <TextView
+            android:id="@+id/tvUserName"
+            style="@style/TextAppearance.CarTrack.MediumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.userName}"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/white_40"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

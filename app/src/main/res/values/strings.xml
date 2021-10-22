@@ -26,6 +26,7 @@
     <string name="txt_hint_user_name">Username</string>
     <string name="txt_hint_pw">Password</string>
     <string name="cont">Continue</string>
+    <string name="login">Login</string>
     <string name="user_name_not_valid">Username format is not valid</string>
     <string name="password_not_valid">Password is not valid</string>
     <string name="title_activity_maps">MapsActivity</string>

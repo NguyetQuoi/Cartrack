@@ -19,7 +19,7 @@ This project was wrote by Kotlin, include some architectures:
 
 Completed feature:
 - Splash screen: mock up db
-- Login Screen: can login with account mocked up
+- Login Screen: can login with mocked up account
 - UserList Screen: show users list (just show name of user)
 - Detail Screen: click on an item UserList, we show detail screen of this user (focus on this user’s location).
 Implement my-location button allow moving to your current location.
