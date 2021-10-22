@@ -15,8 +15,8 @@
 
     <string name="location_denied">Location Permission Denied</string>
 
-    <string name="wrong_code">The verification code you entered is wrong or\nexpired. Please try again or request new code.</string>
-    <string name="location_request_sms">Before we start, remember that you must leave\nyour location services on in order for this\napplication to assist you!</string>
+    <string name="wrong_code">The verification code you entered is wrong or expired. Please try again or request new code.</string>
+    <string name="location_request_sms">Before we start, remember that you must leave your location services on in order for this application to assist you!</string>
     <string name="location_request_title">Hold on!</string>
     <string name="resend">resend</string>
     <string name="oops">Oops!</string>
