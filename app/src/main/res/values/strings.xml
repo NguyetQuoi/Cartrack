@@ -1,4 +1,5 @@
 <resources>
+    <string name="google_maps_key">AIzaSyATZR-lEQa9P52hd-ZU-3_pJ6ung5eSM9w</string>
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="yes">Yes</string>
