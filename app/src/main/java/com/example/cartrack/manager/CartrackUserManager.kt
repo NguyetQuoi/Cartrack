@@ -30,8 +30,7 @@ import timber.log.Timber
 
 class CartrackUserManager(
     context: Context,
-    preferenceStorage: PreferenceStorage,
-    private val appDataRepository: AppDataRepository,
+    private val preferenceStorage: PreferenceStorage,
 ) : CartrackUserInit(context, preferenceStorage), UserManager {
 
     override suspend fun signIn(username: String, password: String, name: String): Single<String> {
@@ -39,11 +38,12 @@ class CartrackUserManager(
             .subscribeOn(Schedulers.io())
     }
 
-    override suspend fun signOut() {
+    override fun signOut() {
         mCurrentUser = null
+        preferenceStorage.user = null
     }
 
-    private suspend fun signInObservable(username: String, password: String): Single<String> {
+    private fun signInObservable(username: String, password: String): Single<String> {
         return Single.create {
         }
     }

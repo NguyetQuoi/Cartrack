@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.room.util.StringUtil
 import com.example.cartrack.base.BindingViewModel
 import com.example.cartrack.data.AppDataRepository
+import com.example.cartrack.data.model.Account
+import com.example.cartrack.data.pref.PreferenceStorage
 import com.example.cartrack.extention.plusAssign
 import com.example.cartrack.global.RxProperty
 import com.example.cartrack.manager.UserManager
@@ -24,8 +26,10 @@ import java.util.regex.Pattern
  */
 
 class LoginViewModel(
-    private val appDataRepository: AppDataRepository, userManager: UserManager,
-    private val schedulerProvider: SchedulerProvider
+    private val appDataRepository: AppDataRepository,
+    userManager: UserManager,
+    private val schedulerProvider: SchedulerProvider,
+    private val preferenceStorage: PreferenceStorage,
 ) : BindingViewModel(userManager) {
 
     val signInUsername = RxProperty<String>("MochiHeoQuay")
@@ -34,6 +38,7 @@ class LoginViewModel(
     val isTogglePassword = ObservableBoolean(false)
 
     init {
+
         Observable.combineLatest<String, String, Boolean>(
             signInUsername.asObservable(),
             signInPassword.asObservable(),
@@ -51,10 +56,10 @@ class LoginViewModel(
                 showLoadingDialog()
                 viewModelScope.launch {
                     appDataRepository.login(username, password)
-                        //.observeOn(schedulerProvider.ui())
+                        .observeOn(schedulerProvider.ui())
                         .doFinally { dismissLoadingDialog() }
                         .subscribe({
-                            loginResult(it)
+                            afterLogin(it)
                         }, {
                             handleError(it)
                         })
@@ -67,13 +72,9 @@ class LoginViewModel(
         startActivity(ListUserActivity::class.java, finish = true, clearTask = true)
     }
 
-    private fun loginResult(result: Boolean) {
-        if (result) {
-            gotoListScreen()
-            return
-        }
-
-        showToast("Login fail with wrong username or password. Please try again!")
+    private fun afterLogin(account: Account) {
+        preferenceStorage.user = account
+        gotoListScreen()
     }
 
     /**

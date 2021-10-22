@@ -37,7 +37,7 @@ open class AppDataRepository(
         return offlineDataSource.mockUpAccount(account)
     }
 
-    override suspend fun login(username: String, password: String): Observable<Boolean> {
+    override suspend fun login(username: String, password: String): Observable<Account> {
         return offlineDataSource.login(username, password)
     }
 }

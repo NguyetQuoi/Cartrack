@@ -4,7 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.cartrack.base.BindingViewModel
 import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.model.Account
+import com.example.cartrack.data.pref.PreferenceStorage
 import com.example.cartrack.manager.UserManager
+import com.example.cartrack.ui.list.ListUserActivity
 import com.example.cartrack.ui.login.LoginActivity
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.Observable
@@ -20,6 +22,7 @@ import timber.log.Timber
 class SplashViewModel(
     private val appDataRepository: AppDataRepository,
     private val schedulerProvider: SchedulerProvider,
+    private val preferenceStorage: PreferenceStorage,
     userManager: UserManager
 ) :
     BindingViewModel(userManager) {
@@ -35,7 +38,7 @@ class SplashViewModel(
                     .observeOn(schedulerProvider.ui())
                     .subscribe({
                         Timber.d("Mock up database: %s", it.toString())
-                        goToLoginScreen()
+                        checkUserState()
                     }, {
                         handleError(it)
                     })
@@ -43,7 +46,20 @@ class SplashViewModel(
         }
     }
 
+    private fun checkUserState() {
+        if (preferenceStorage.user == null) {
+            goToLoginScreen()
+            return
+        }
+
+        goToListUserScreen()
+    }
+
     private fun goToLoginScreen() {
         startActivity(LoginActivity::class.java, finish = true, clearTask = true)
+    }
+
+    private fun goToListUserScreen() {
+        startActivity(ListUserActivity::class.java, finish = true, clearTask = true)
     }
 }

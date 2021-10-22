@@ -2,7 +2,7 @@ READ ME - CARTRACK’s ASSIGNMENT - Android Developer position
 
 Name: Tran Thi Nguyet Quoi
 
-How to login: I’ve not added logout-feature already, then, I set the default value for username and password on the login-screen to let you do login more easy. Here is the account:
+How to login: I set the default value for username and password on the login-screen to let you do login more easy. Here is the account:
 - Username: MochiHeoQuay
 - Password: moChi020#abc
 
@@ -28,8 +28,7 @@ It means: if user use the right style of username and password, then the LogIn b
 - The UI is so bad, I know that. But I spend too much time on the core-project, then I have no time for design a good UI.
 
 Uncompleted:
-- Logout
 - Test
 
-It takes my 4 days to complete this assignment, because I have some deadlines on freelance job.
+It takes 4 days to complete this assignment, because I have some deadlines on freelance job.
 I'm sorry because of my bad attitude. Thank you so much for reading my README. Have a nice day.

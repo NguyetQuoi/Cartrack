@@ -1,4 +1,5 @@
 package com.example.cartrack.ui.list
+
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.example.cartrack.base.BaseRecyclerViewAdapter
@@ -6,9 +7,12 @@ import com.example.cartrack.base.BindingViewModel
 import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.extention.plusAssign
+import com.example.cartrack.global.NavigationItem
 import com.example.cartrack.global.TransactionAnimation
 import com.example.cartrack.manager.UserManager
 import com.example.cartrack.ui.detail.UserDetailActivity
+import com.example.cartrack.ui.login.LoginActivity
+import com.example.cartrack.ui.login.LoginViewModel
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.functions.Consumer
 
@@ -75,7 +79,8 @@ class ListUserViewModel(
         userAdapter.notifyDataSetChanged()
     }
 
-    fun onLogOutClicked(){
-
+    fun onLogOutClicked() {
+        userManager.signOut()
+        startActivity(LoginActivity::class.java, finish = true, clearTask = true)
     }
 }

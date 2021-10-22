@@ -28,7 +28,7 @@ val appModule = module {
             .create()
     }
     single<ResourceProvider> { AppResourceProvider(androidContext()) }
-    single<UserManager> { CartrackUserManager(androidContext(), get(), get()) }
+    single<UserManager> { CartrackUserManager(androidContext(), get()) }
     single<SchedulerProvider> { AppSchedulerProvider() }
     single { AppWorkManager() }
 }
