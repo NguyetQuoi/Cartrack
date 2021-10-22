@@ -1,7 +1,9 @@
 package com.example.cartrack.ui.detail
 
 import com.example.cartrack.base.BindingViewModel
+import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.manager.UserManager
+import com.google.android.gms.maps.model.LatLng
 
 /**
  * DetailViewModel for [UserDetailActivity]
@@ -10,4 +12,14 @@ import com.example.cartrack.manager.UserManager
  */
 
 class UserDetailViewModel(userManager: UserManager) : BindingViewModel(userManager) {
+
+    private var user: UserObject? = null
+
+    /**
+     * Set user for viewModel
+     * @param user [UserObject] location
+     */
+    fun setData(user: UserObject) {
+        this.user = user
+    }
 }
