@@ -21,18 +21,18 @@ class RoomDatabaseStorage(
     private val accountDao: AccountDao
 ) : DataSource {
 
-    override fun addUser(user: User): Observable<Boolean> {
+    override suspend fun addUser(user: User): Observable<Boolean> {
         return Observable.just(userDao.addUser(user).toInt() == 1)
     }
 
-    override fun addUsers(users: List<User>): Observable<Boolean> {
+    override suspend fun addUsers(users: List<User>): Observable<Boolean> {
         for (user in users) {
             userDao.addUser(user)
         }
         return Observable.just(true)
     }
 
-    override fun getUsers(): Observable<List<User>> {
+    override suspend fun getUsers(): Observable<List<User>> {
         return Observable.just(userDao.getAllUser())
     }
 

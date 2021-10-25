@@ -19,15 +19,15 @@ open class AppDataRepository(
     private val preferenceStorage: PreferenceStorage
 ) : DataSource {
 
-    override fun addUser(user: User): Observable<Boolean> {
+    override suspend fun addUser(user: User): Observable<Boolean> {
         return offlineDataSource.addUser(user)
     }
 
-    override fun addUsers(users: List<User>): Observable<Boolean> {
+    override suspend fun addUsers(users: List<User>): Observable<Boolean> {
         return offlineDataSource.addUsers(users)
     }
 
-    override fun getUsers(): Observable<List<User>> {
+    override suspend fun getUsers(): Observable<List<User>> {
         val result = remoteDataSource.getUsers()
         offlineDataSource.addUsers(result.blockingFirst())
         return result

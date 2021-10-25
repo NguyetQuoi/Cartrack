@@ -2,6 +2,7 @@ package com.example.cartrack.ui.list
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.cartrack.base.BaseRecyclerViewAdapter
 import com.example.cartrack.base.BindingViewModel
 import com.example.cartrack.data.AppDataRepository
@@ -13,6 +14,7 @@ import com.example.cartrack.ui.detail.UserDetailActivity
 import com.example.cartrack.ui.login.LoginActivity
 import com.example.cartrack.util.rx.SchedulerProvider
 import io.reactivex.functions.Consumer
+import kotlinx.coroutines.launch
 
 /**
  * ListUserViewModel for [ListUserActivity]
@@ -47,15 +49,17 @@ class ListUserViewModel(
 
     private fun getUserList() {
         showLoadingDialog()
-        appDataRepository.getUsers()
-            .observeOn(schedulerProvider.ui())
-            .subscribe(Consumer { userList ->
-                dismissLoadingDialog()
-                if (userList.isNotEmpty()) {
-                    users.value = userList
-                    setUsers(userList)
-                }
-            }, commonOnErrorConsumer) += disposeBag
+        viewModelScope.launch {
+            appDataRepository.getUsers()
+                .observeOn(schedulerProvider.ui())
+                .subscribe(Consumer { userList ->
+                    dismissLoadingDialog()
+                    if (userList.isNotEmpty()) {
+                        users.value = userList
+                        setUsers(userList)
+                    }
+                }, commonOnErrorConsumer) += disposeBag
+        }
     }
 
     /**

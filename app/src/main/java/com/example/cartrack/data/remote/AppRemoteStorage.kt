@@ -15,15 +15,15 @@ import retrofit2.Retrofit
 class AppRemoteStorage(retrofit: Retrofit) : DataSource {
     private val apiService: ApiService = retrofit.create(ApiService::class.java)
 
-    override fun addUser(user: User): Observable<Boolean> {
+    override suspend fun addUser(user: User): Observable<Boolean> {
         return Observable.just(true)
     }
 
-    override fun addUsers(users: List<User>): Observable<Boolean> {
+    override suspend fun addUsers(users: List<User>): Observable<Boolean> {
         return Observable.just(true)
     }
 
-    override fun getUsers(): Observable<List<User>> {
+    override suspend fun getUsers(): Observable<List<User>> {
         return apiService.getUsers()
     }
 

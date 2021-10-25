@@ -16,15 +16,15 @@ interface DataSource {
      * @return [Observable<List<Document>>]
      */
 
-    fun addUser(user: User): Observable<Boolean>
+    suspend fun addUser(user: User): Observable<Boolean>
 
-    fun addUsers(users: List<User>): Observable<Boolean>
+    suspend fun addUsers(users: List<User>): Observable<Boolean>
 
     /**
      * Get list observation of a location base on its category name
      * @return Observable<List<User>>
      */
-    fun getUsers(): Observable<List<User>>
+    suspend fun getUsers(): Observable<List<User>>
 
     suspend fun mockUpAccount(account: Account): Observable<Boolean>
 
