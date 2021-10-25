@@ -2,10 +2,7 @@ package com.example.cartrack.data
 
 import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
-import com.example.cartrack.data.model.UserObject
-import com.example.cartrack.data.remote.response.BaseResponse
 import io.reactivex.Observable
-import retrofit2.http.QueryMap
 
 /**
  * Interface for dataSource
@@ -27,7 +24,7 @@ interface DataSource {
      * Get list observation of a location base on its category name
      * @return Observable<List<User>>
      */
-    fun getUsers(): Observable<List<UserObject>>
+    fun getUsers(): Observable<List<User>>
 
     suspend fun mockUpAccount(account: Account): Observable<Boolean>
 

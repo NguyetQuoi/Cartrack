@@ -1,8 +1,6 @@
 package com.example.cartrack.data.remote
 
 import com.example.cartrack.data.model.User
-import com.example.cartrack.data.model.UserObject
-import com.example.cartrack.data.remote.response.BaseResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 
@@ -19,5 +17,5 @@ interface ApiService {
      * @return [Observable<List<User>>]
      */
     @GET("users")
-    fun getUsers(): Observable<List<UserObject>>
+    fun getUsers(): Observable<List<User>>
 }

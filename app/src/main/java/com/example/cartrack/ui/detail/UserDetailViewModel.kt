@@ -2,9 +2,8 @@ package com.example.cartrack.ui.detail
 
 import androidx.lifecycle.MutableLiveData
 import com.example.cartrack.base.BindingViewModel
-import com.example.cartrack.data.model.UserObject
+import com.example.cartrack.data.model.User
 import com.example.cartrack.manager.UserManager
-import com.google.android.gms.maps.model.LatLng
 
 /**
  * DetailViewModel for [UserDetailActivity]
@@ -14,15 +13,15 @@ import com.google.android.gms.maps.model.LatLng
 
 class UserDetailViewModel(userManager: UserManager) : BindingViewModel(userManager) {
 
-    private var user: UserObject? = null
+    private var user: User? = null
 
     var isMyLocationButtonClick = MutableLiveData(false)
 
     /**
      * Set user for viewModel
-     * @param user [UserObject] location
+     * @param user [User] location
      */
-    fun setData(user: UserObject) {
+    fun setData(user: User) {
         this.user = user
     }
 

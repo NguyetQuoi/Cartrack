@@ -1,13 +1,10 @@
 package com.example.cartrack.data.local
 
-import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.DataSource
 import com.example.cartrack.data.local.dao.AccountDao
 import com.example.cartrack.data.local.dao.UserDao
 import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
-import com.example.cartrack.data.model.UserObject
-import com.example.cartrack.data.remote.response.BaseResponse
 import com.google.gson.Gson
 import io.reactivex.Observable
 
@@ -36,7 +33,7 @@ class RoomDatabaseStorage(
         return Observable.just(true)
     }
 
-    override fun getUsers(): Observable<List<UserObject>> {
+    override fun getUsers(): Observable<List<User>> {
         return Observable.just(emptyList())
     }
 

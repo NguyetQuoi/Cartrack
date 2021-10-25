@@ -3,11 +3,8 @@ package com.example.cartrack.data.remote
 import com.example.cartrack.data.DataSource
 import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
-import com.example.cartrack.data.model.UserObject
-import com.example.cartrack.data.remote.ApiService
 import io.reactivex.Observable
 import retrofit2.Retrofit
-import timber.log.Timber
 
 /**
  * An app storage remote
@@ -26,7 +23,7 @@ class AppRemoteStorage(retrofit: Retrofit) : DataSource {
         return Observable.just(true)
     }
 
-    override fun getUsers(): Observable<List<UserObject>> {
+    override fun getUsers(): Observable<List<User>> {
         return apiService.getUsers()
 //        return apiService.getUsers().map { response ->
 //            response.data

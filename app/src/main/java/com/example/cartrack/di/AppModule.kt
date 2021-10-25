@@ -23,7 +23,7 @@ val appModule = module {
         GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .setDateFormat(Constants.APP_DATE_TIME_FORMAT)
-            //.registerTypeAdapter(User::class.java, UserDeserializer())
+            .registerTypeAdapter(User::class.java, UserDeserializer())
             .setLenient()
             .create()
     }

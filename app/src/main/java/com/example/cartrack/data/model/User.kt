@@ -4,10 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import timber.log.Timber
+import java.lang.Exception
 import java.lang.reflect.Type
 import java.util.*
 
@@ -40,7 +42,37 @@ data class User(
 
     @ColumnInfo
     val company: String
-) : Model
+) : Model {
+    fun getUserLocation(): LatLng? {
+        val add = address.split(",")
+        if (add.size != 6) {
+            return null
+        }
+        val location: LatLng? = try {
+            val lat = add[4].toDouble()
+            val lng = add[5].toDouble()
+            LatLng(lat, lng)
+        } catch (exception: Exception) {
+            LatLng(Double.MIN_VALUE, Double.MIN_VALUE)
+        }
+
+        return location
+    }
+
+    fun getUserCompany(): Company? {
+        val companyListString = company.split(",")
+        if (companyListString.size != 3) {
+            return null
+        }
+
+        val company: Company? = try {
+            Company(companyListString[0], companyListString[1], companyListString[3])
+        } catch (exception: Exception) {
+            Company("", "", "")
+        }
+        return company
+    }
+}
 
 /**
  * Deserializer for User
@@ -52,9 +84,6 @@ class UserDeserializer : JsonDeserializer<User> {
         context: JsonDeserializationContext
     ): User {
         val jsonObject = json.asJsonObject
-
-        Timber.e("QQQ")
-        Timber.e(json.toString())
 
         val id = jsonObject.get("id").asInt
 

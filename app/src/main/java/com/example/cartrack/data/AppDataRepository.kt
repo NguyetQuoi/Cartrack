@@ -3,10 +3,8 @@ package com.example.cartrack.data
 import android.content.Context
 import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
-import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.data.pref.PreferenceStorage
 import io.reactivex.Observable
-import timber.log.Timber
 
 /**
  * AppDataRepository all repositories of app
@@ -29,7 +27,7 @@ open class AppDataRepository(
         return offlineDataSource.addUsers(users)
     }
 
-    override fun getUsers(): Observable<List<UserObject>> {
+    override fun getUsers(): Observable<List<User>> {
         return remoteDataSource.getUsers()
     }
 
