@@ -32,3 +32,7 @@ Uncompleted:
 
 It takes 4 days to complete this assignment, because I have some deadlines on freelance job.
 I'm sorry because of my bad attitude. Thank you so much for reading my README. Have a nice day.
+
+
+// Branch second-main is my update for the assignment after the deadline.
+// I just want to complete it as good as I can.
