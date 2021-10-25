@@ -22,19 +22,18 @@ class RoomDatabaseStorage(
 ) : DataSource {
 
     override fun addUser(user: User): Observable<Boolean> {
-        //userDao.addUser(user)
-        return Observable.just(true)
+        return Observable.just(userDao.addUser(user).toInt() == 1)
     }
 
     override fun addUsers(users: List<User>): Observable<Boolean> {
         for (user in users) {
-            //userDao.addUser(user)
+            userDao.addUser(user)
         }
         return Observable.just(true)
     }
 
     override fun getUsers(): Observable<List<User>> {
-        return Observable.just(emptyList())
+        return Observable.just(userDao.getAllUser())
     }
 
     override suspend fun mockUpAccount(account: Account): Observable<Boolean> {

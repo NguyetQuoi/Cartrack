@@ -28,7 +28,9 @@ open class AppDataRepository(
     }
 
     override fun getUsers(): Observable<List<User>> {
-        return remoteDataSource.getUsers()
+        val result = remoteDataSource.getUsers()
+        offlineDataSource.addUsers(result.blockingFirst())
+        return result
     }
 
     override suspend fun mockUpAccount(account: Account): Observable<Boolean> {

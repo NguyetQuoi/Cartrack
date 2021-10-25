@@ -25,9 +25,6 @@ class AppRemoteStorage(retrofit: Retrofit) : DataSource {
 
     override fun getUsers(): Observable<List<User>> {
         return apiService.getUsers()
-//        return apiService.getUsers().map { response ->
-//            response.data
-//        }
     }
 
     override suspend fun mockUpAccount(account: Account): Observable<Boolean> {
