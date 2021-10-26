@@ -7,6 +7,7 @@ import com.example.cartrack.R
 import com.example.cartrack.base.BaseMapActivity
 import com.example.cartrack.data.model.User
 import com.example.cartrack.databinding.ActivityUserDetailBinding
+import com.example.cartrack.extention.showToast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -67,17 +68,27 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
     private fun initAction() {
         viewModel.isMyLocationButtonClick.observe(this, Observer {
             if (it) {
+                checkLocationServiceStatus()
                 moveToMyLocation()
             }
         })
+
+        gpsStatus.value = false
     }
 
     private fun moveToMyLocation() {
-        lastLocation.value?.let {
-            val latLng = LatLng(it.latitude, it.longitude)
-            val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
-            map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
-            map?.animateCamera(update)
+        gpsStatus.value?.let {
+            if (it) {
+                lastLocation.value?.let {
+                    val latLng = LatLng(it.latitude, it.longitude)
+                    val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
+                    map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
+                    map?.animateCamera(update)
+                }
+                return
+            }
+
+            showToast("Location Service is disable. Please enable it before click on Loation Button.")
         }
     }
 
