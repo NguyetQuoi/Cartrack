@@ -2,7 +2,9 @@ package com.example.cartrack.base
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import androidx.core.app.ActivityCompat
@@ -36,6 +38,8 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
     ActivityCompat.OnRequestPermissionsResultCallback {
 
     protected var map: GoogleMap? = null
+
+    var gpsStatus: Boolean = false
 
     private val myLocationRequestCode = 999
 
@@ -132,5 +136,10 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
                 }
             }
         }
+    }
+
+    fun locationEnabled() {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 }
