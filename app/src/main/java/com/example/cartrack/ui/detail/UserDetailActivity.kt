@@ -1,14 +1,11 @@
 package com.example.cartrack.ui.detail
 
-import android.graphics.Color
-import android.location.Location
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.example.cartrack.R
-import com.example.cartrack.base.BaseActivity
 import com.example.cartrack.base.BaseMapActivity
-import com.example.cartrack.data.model.UserObject
+import com.example.cartrack.data.model.User
 import com.example.cartrack.databinding.ActivityUserDetailBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -28,12 +25,12 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
 
     override val layoutId: Int = R.layout.activity_user_detail
 
-    var user: UserObject? = null
+    var user: User? = null
     var location: LatLng? = null
 
     companion object {
         private const val USER_EXTRA = "user_extra"
-        fun createBundleExtra(user: UserObject): Bundle {
+        fun createBundleExtra(user: User): Bundle {
             return bundleOf(USER_EXTRA to user)
         }
     }
@@ -56,9 +53,9 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
     }
 
     private fun setupData(savedInstanceState: Bundle?) {
-        val user = bundle?.getSerializable(USER_EXTRA) as UserObject
+        val user = bundle?.getSerializable(USER_EXTRA) as User
         this.user = user
-        this.location = LatLng(user.address.geo.lat.toDouble(), user.address.geo.lng.toDouble())
+        this.location = user.getUserLocation()
         viewModel.setData(user)
     }
 

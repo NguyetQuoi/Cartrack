@@ -1,13 +1,10 @@
 package com.example.cartrack.data.local
 
-import com.example.cartrack.data.AppDataRepository
 import com.example.cartrack.data.DataSource
 import com.example.cartrack.data.local.dao.AccountDao
 import com.example.cartrack.data.local.dao.UserDao
 import com.example.cartrack.data.model.Account
 import com.example.cartrack.data.model.User
-import com.example.cartrack.data.model.UserObject
-import com.example.cartrack.data.remote.response.BaseResponse
 import com.google.gson.Gson
 import io.reactivex.Observable
 
@@ -24,20 +21,19 @@ class RoomDatabaseStorage(
     private val accountDao: AccountDao
 ) : DataSource {
 
-    override fun addUser(user: User): Observable<Boolean> {
-        //userDao.addUser(user)
-        return Observable.just(true)
+    override suspend fun addUser(user: User): Observable<Boolean> {
+        return Observable.just(userDao.addUser(user).toInt() == 1)
     }
 
-    override fun addUsers(users: List<User>): Observable<Boolean> {
+    override suspend fun addUsers(users: List<User>): Observable<Boolean> {
         for (user in users) {
-            //userDao.addUser(user)
+            userDao.addUser(user)
         }
         return Observable.just(true)
     }
 
-    override fun getUsers(): Observable<List<UserObject>> {
-        return Observable.just(emptyList())
+    override suspend fun getUsers(): Observable<List<User>> {
+        return Observable.just(userDao.getAllUser())
     }
 
     override suspend fun mockUpAccount(account: Account): Observable<Boolean> {
