@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.example.cartrack.R
-import com.example.cartrack.base.BaseActivity
 import com.example.cartrack.base.BaseMapActivity
 import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.databinding.ActivityUserDetailBinding
@@ -69,25 +68,28 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
     private fun initAction() {
         viewModel.isMyLocationButtonClick.observe(this, Observer {
             if (it) {
-                locationEnabled()
+                checkLocationServiceStatus()
                 moveToMyLocation()
             }
         })
+
+        gpsStatus.value = false
     }
 
     private fun moveToMyLocation() {
-        if (gpsStatus) {
-            lastLocation.value?.let {
-                val latLng = LatLng(it.latitude, it.longitude)
-                val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
-                map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
-                map?.animateCamera(update)
+        gpsStatus.value?.let {
+            if (it) {
+                lastLocation.value?.let {
+                    val latLng = LatLng(it.latitude, it.longitude)
+                    val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
+                    map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
+                    map?.animateCamera(update)
+                }
+                return
             }
-            return
+
+            showToast("Location Service is disable. Please enable it before click on Loation Button.")
         }
-
-        showToast("Location Service is disable. Please enable it before click on Loation Button.")
-
     }
 
     override fun lastLocationUpdated(latLng: LatLng) {

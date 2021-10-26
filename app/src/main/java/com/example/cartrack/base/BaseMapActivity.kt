@@ -39,7 +39,7 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
 
     protected var map: GoogleMap? = null
 
-    var gpsStatus: Boolean = false
+    protected var gpsStatus: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private val myLocationRequestCode = 999
 
@@ -138,8 +138,8 @@ abstract class BaseMapActivity<VM : BindingViewModel, VDB : ViewDataBinding> :
         }
     }
 
-    fun locationEnabled() {
+    protected fun checkLocationServiceStatus() {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        gpsStatus = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        gpsStatus.value = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 }
