@@ -1,9 +1,5 @@
 package com.example.cartrack.ui.detail
 
-import android.content.Context
-import android.graphics.Color
-import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
