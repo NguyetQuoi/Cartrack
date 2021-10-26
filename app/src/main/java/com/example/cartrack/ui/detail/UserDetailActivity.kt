@@ -1,7 +1,9 @@
 package com.example.cartrack.ui.detail
 
+import android.content.Context
 import android.graphics.Color
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -10,6 +12,7 @@ import com.example.cartrack.base.BaseActivity
 import com.example.cartrack.base.BaseMapActivity
 import com.example.cartrack.data.model.UserObject
 import com.example.cartrack.databinding.ActivityUserDetailBinding
+import com.example.cartrack.extention.showToast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -70,18 +73,25 @@ class UserDetailActivity : BaseMapActivity<UserDetailViewModel, ActivityUserDeta
     private fun initAction() {
         viewModel.isMyLocationButtonClick.observe(this, Observer {
             if (it) {
+                locationEnabled()
                 moveToMyLocation()
             }
         })
     }
 
     private fun moveToMyLocation() {
-        lastLocation.value?.let {
-            val latLng = LatLng(it.latitude, it.longitude)
-            val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
-            map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
-            map?.animateCamera(update)
+        if (gpsStatus) {
+            lastLocation.value?.let {
+                val latLng = LatLng(it.latitude, it.longitude)
+                val update = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
+                map?.addMarker(MarkerOptions().position(latLng).title("Here you are!"))
+                map?.animateCamera(update)
+            }
+            return
         }
+
+        showToast("Location Service is disable. Please enable it before click on Loation Button.")
+
     }
 
     override fun lastLocationUpdated(latLng: LatLng) {
