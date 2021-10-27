@@ -18,13 +18,15 @@ ext {
             kotlin                 : '1.5.21',
             okhttp                 : '3.14.1',
             retrofit               : '2.9.0',
+            junit                  : '5.8.0',
             support                : '1.0.0',
-            work_version           : '2.0.1'
+            work_version           : '2.7.0'
     ]
 
     build_plugins = [
             android_gradle: [group: 'com.android.tools.build', name: 'gradle', version: versions.android_plugin],
-            kotlin_gradle : [group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: '1.5.31']
+            kotlin_gradle : [group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: '1.5.31'],
+            android_junit : [group: 'de.mannodermaus.gradle.plugins', name: 'android-junit5', version: '1.8.0.0']
     ]
     libs = [
             lifecycle_ext              : "androidx.lifecycle:lifecycle-extensions:2.2.0",
@@ -47,18 +49,20 @@ ext {
             junit_engine               : "org.junit.jupiter:junit-jupiter-engine:$versions.junit",
             junit_param                : "org.junit.jupiter:junit-jupiter-params:$versions.junit",
 
+            espresso                   : "androidx.test.espresso:espresso-core:3.4.0",
+
             koin_android               : "org.koin:koin-android:$versions.koin",
             koin_architecture          : "org.koin:koin-android-viewmodel:$versions.koin",
-            koin_test              : "org.koin:koin-test:$versions.koin",
+            koin_test                  : "org.koin:koin-test:$versions.koin",
             kotlin_ext                 : "androidx.core:core-ktx:1.6.0",
 
             kotlin_stdlib              : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
-//            kotlintest             : "io.kotlintest:kotlintest-runner-junit5:3.3.2",
+            kotlintest                 : "io.kotlintest:kotlintest-runner-junit5:3.3.2",
             legacy_support             : "androidx.legacy:legacy-support-v4:1.0.0",
-//            mockito_kotlin         : "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
+            mockito_kotlin             : "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
             okhttp                     : "com.squareup.okhttp3:okhttp:$versions.okhttp",
             okhttp_logging             : "com.squareup.okhttp3:logging-interceptor:3.14.1",
-            power_mock                 : "org.powermock:powermock-api-mockito2:2.0.2",
+            power_mock                 : "org.powermock:powermock-api-mockito2:2.0.4",
 
             retrofit                   : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             retrofit_gson              : "com.squareup.retrofit2:converter-gson:$versions.retrofit",

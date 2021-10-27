@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'de.mannodermaus.android-junit5'
+
 android {
 //    signingConfigs {
 //        debug {
@@ -158,8 +160,8 @@ dependencies {
     implementation libs.ssp
 
     // Work Manager
-    implementation "androidx.work:work-runtime-ktx:2.7.0"
-    implementation "androidx.work:work-rxjava2:2.7.0"
+    implementation libs.work_runtime_ktx
+    implementation libs.work_rxjava2
 
     // Log
     implementation libs.timber
@@ -175,17 +177,35 @@ dependencies {
     implementation 'net.zetetic:android-database-sqlcipher:4.4.0@aar'
 
     // Unit test
-    testImplementation "junit:junit:4.13.2"
-    testImplementation "org.mockito:mockito-core:3.5.9"
-    testImplementation "android.arch.core:core-testing:1.1.1"
+    testImplementation(libs.arch_comp_test) {
+        exclude module: 'junit'
+    }
 
+    testImplementation libs.junit_api
+    testImplementation libs.junit_param
+    testImplementation libs.kotlintest
+    testImplementation(libs.koin_test) {
+        exclude module: 'junit'
+    }
+
+    testImplementation libs.mockito_kotlin
+    testImplementation libs.power_mock
+    testImplementation libs.assertJ_android
+    testImplementation libs.work_testing
+
+    androidTestImplementation libs.espresso
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+    androidTestImplementation 'androidx.test:core:1.4.0'
+    androidTestImplementation(libs.koin_test) {
+        exclude module: 'junit'
+        exclude group: 'org.mockito'
+    }
+    androidTestImplementation(libs.mockito_kotlin)
+    androidTestImplementation(libs.power_mock)
 
-    testImplementation "org.powermock:powermock-module-junit4:2.0.4"
-    testImplementation "org.powermock:powermock-module-junit4-rule:2.0.4"
-    testImplementation "org.powermock:powermock-api-mockito2:2.0.4"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.3'
+    testRuntimeOnly libs.junit_engine
 }
 
 allprojects {
