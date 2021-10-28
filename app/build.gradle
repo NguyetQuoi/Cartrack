@@ -124,8 +124,13 @@ dependencies {
     implementation libs.okhttp_logging
 
     // Koin
-    implementation "io.insert-koin:koin-core:3.1.2"
+    implementation libs.koin_core
+    implementation libs.koin_android
+
+    /*
+     implementation "io.insert-koin:koin-core:3.1.2"
     implementation "io.insert-koin:koin-android:3.1.2"
+     */
 
     // Kotlin
     implementation libs.kotlin_stdlib
@@ -206,6 +211,8 @@ dependencies {
     androidTestImplementation(libs.power_mock)
 
     testRuntimeOnly libs.junit_engine
+
+    testImplementation 'io.insert-koin:koin-test-junit5:3.1.3'
 }
 
 allprojects {

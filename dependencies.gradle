@@ -51,9 +51,9 @@ ext {
 
             espresso                   : "androidx.test.espresso:espresso-core:3.4.0",
 
-            koin_android               : "org.koin:koin-android:$versions.koin",
-            koin_architecture          : "org.koin:koin-android-viewmodel:$versions.koin",
-            koin_test                  : "org.koin:koin-test:$versions.koin",
+            koin_android               : "io.insert-koin:koin-android:$versions.koin",
+            koin_core                  : "io.insert-koin:koin-core:$versions.koin",
+            koin_test                  : "io.insert-koin:koin-test-junit5:$versions.koin",
             kotlin_ext                 : "androidx.core:core-ktx:1.6.0",
 
             kotlin_stdlib              : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
